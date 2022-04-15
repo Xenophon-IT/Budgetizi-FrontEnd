@@ -1,0 +1,271 @@
+<form [formGroup]="form" (ngSubmit)="addWorker()" class="form-sample">
+    <ng-container>
+        <div class="text-right">
+            <button type="submit" class="btn btn-inverse-success btn-fw">Ajouter une
+                Resource</button>
+        </div>
+    </ng-container>
+    <br>
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">{{nameCompany}}</h4>
+
+                <div class="row">
+                    <h4 class="card-title text-center">Informations Ressource </h4>
+
+                    <div class="form-group row">
+                        <div class="col">
+                            <label for="fullName">Nom de la Ressource </label>
+                            <div id="the-basics">
+                                <input formControlName="fullName" id="fullName" name="fullName" type="text"
+                                    class="typeahead form-control" placeholder="Enter the Resource name..." required
+                                    autofocus />
+                                <small *ngIf="exformFunction.fullName.invalid && exformFunction.fullName.touched"
+                                    class="text-danger" required autofocus> Le nom est obligatoire !
+                                </small>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label for="GrossSalary">Salaire Brut </label>
+                            <div id="bloodhound">
+                                <input formControlName="GrossSalary" name="GrossSalary" id="GrossSalary"
+                                    class="typeahead form-control" type="number" placeholder="Saisir le salaire bru..."
+                                    required autofocus>
+                                <small *ngIf="exformFunction.GrossSalary.invalid && exformFunction.GrossSalary.touched"
+                                    class="text-danger" required autofocus> Saisir le coût d'une heure sur site !
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col">
+                            <label for="professionWorker">Fonction</label>
+                            <div id="the-basics">
+                                <input formControlName="professionWorker" name="professionWorker" id="professionWorker"
+                                    class="typeahead form-control" type="text" placeholder="Saisir la fonction..."
+                                    required autofocus>
+                                <small
+                                    *ngIf="exformFunction.professionWorker.invalid && exformFunction.professionWorker.touched"
+                                    class="text-danger" required autofocus> Saisir la fonction !
+                                </small>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label for="departName">Departement</label>
+                            <div id="bloodhound">
+                                <!-- <select formControlName="departName" name="departName" id="departName"
+                                    class="form-control" required autofocus>
+                                    <option selected="selected" disabled>Chose a department</option>
+                                    <option>.......</option>
+                                    <option>.......</option>
+                                    <option>.......</option>
+                                    <option>.......</option>
+                                </select> -->
+                                <input formControlName="departName" name="departName"
+                                    id="departName" class="typeahead form-control" type="text"
+                                    placeholder="Enter departement name..." required autofocus>
+                            </div>
+                            <small *ngIf="exformFunction.departName.invalid && exformFunction.departName.touched"
+                                class="text-danger" required autofocus> Choisir le Department   !
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col">
+                            <label for="professionCoefficient">Profit Coefficient</label>
+                            <div id="the-basics">
+                                <input formControlName="professionCoefficient" name="professionCoefficient"
+                                    id="professionCoefficient" class="typeahead form-control" type="number"
+                                    placeholder="2.5..." required autofocus>
+                                <small
+                                    *ngIf="exformFunction.professionCoefficient.invalid && exformFunction.professionCoefficient.touched"
+                                    class="text-danger" required autofocus> Enter the profession Coefficient !
+                                </small>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label for="profileWorker"> Profile de la Resource </label>
+                            <input type="file" name="img[]" class="file-upload-default">
+                            <div class="input-group col-xs-12">
+                                <input type="text" class="form-control file-upload-info" disabled
+                                    placeholder="{{imageProfileForUser}}">
+                                <span class="input-group-append">
+                                    <input formControlName="profileWorker" id="profileWorker" name="profileWorker"
+                                        type="file" style="display: none" #file (change)="onFileChange($event)" required
+                                        autofocus />
+                                    <button type="button" class="btn" (click)="file.click()"
+                                        class="file-upload-browse btn btn-primary"> Browse </button>
+                                </span>
+                                <small
+                                    *ngIf="exformFunction.profileWorker.invalid && exformFunction.profileWorker.touched"
+                                    class="text-danger" required autofocus>image du profile obligatoire !
+                                </small>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title text-center">Liste des Ressources </h4>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                Détails données ressources 
+                            </th>
+                            <th>
+                                Nom de la Ressource
+                            </th>
+                            <th>
+                                Fonction 
+                            </th>
+                            <th>
+                                Departement
+                            </th>
+                            <th>
+                                Profit Coefficient
+                            </th>
+                            <th>
+                                Salaire Brut
+                            </th>
+                            <th>
+                                Supprimer
+                            </th>
+                            <th>
+                                Modifier
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let lisawic of listWorkerInCompany">
+                            <td class="py-1">
+                                <img src="{{lisawic['profileWork']}}" alt="image" />
+                            </td>
+                            <td>
+                                {{lisawic['fullName']}}
+                            </td>
+                            <td>
+                                {{lisawic['profession']}}
+                            <td>
+                                {{lisawic['departName']}}
+                            </td>
+                            <td>
+                                {{lisawic['profCoefficient']}}
+                            </td>
+                            <td>
+                                {{lisawic['salary']}}
+                            </td>
+                            <td>
+                                <a (click)="deleteAnCompte(lisawic['idWorker'],lisawic['fullName'])"><i class="mdi mdi-delete"
+                                        style="font-size: 2em;"></i></a>
+                            </td>
+                            <td>
+                                <a
+                                    (click)="editAnCompte(lisawic['profileWork'],lisawic['fullName'],lisawic['profession'],lisawic['departName'],lisawic['profCoefficient'],lisawic['salary'],lisawic['idWorker'])"><i
+                                        class="mdi mdi-table-edit me-5" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal" style="font-size: 2em;"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <!-- <div class="modal-header">
+                            <h5 class="modal-title text-danger" id="exampleModalLabel">Login
+                                Form</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-warning"
+                                data-bs-dismiss="modal">Close</button>
+                        </div> -->
+                            <div class="modal-header">
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <h4 class="card-title centertext"><i>Modifier données de la ressource</i></h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title centertext">Profile de la Resource</h4>
+                    
+                                <div class="image-upload text-center">
+                                    <label for="file-input2">
+                                        <img src="{{userProfileImage}}" width="250" />
+                                    </label>
+                                    <input id="file-input2" class="custom-file-input" name="file-input2" type="file" (change)="onFileChange2($event)" />
+                    
+                                </div>
+                                <div class="col-md-8">
+                                    <image-cropper [imageChangedEvent]="imgChangeEvt" [maintainAspectRatio]="true" [aspectRatio]="4 / 4"
+                                        [resizeToWidth]="256" format="png" (imageCropped)="cropImg($event)" (imageLoaded)="imgLoad()"
+                                        (cropperReady)="initCropper()" (loadImageFailed)="imgFailed()">
+                                    </image-cropper>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputUsername1">Nom de la Ressource </label>
+                                    <input [(ngModel)]="fullNameWorker" type="text"  class="typeahead" id="exampleInputUsername1"
+                                    value="fullNameWorker"
+                                    >
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col">
+                                        <label>Salaire Brut</label>
+                                        <div id="the-basics">
+                                            <input class="typeahead" type="number
+                                        " [(ngModel)]="salaryWorker" value="salaryWorker">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <label>Profit Coefficient</label>
+                                        <div id="bloodhound">
+                                            <input class="typeahead" type="number" [(ngModel)]="profitCofficientWorker" value="profitCofficientWorker">
+                                        </div>
+                                    </div>
+                                </div>
+                    
+                                <div class="form-group">
+                                    <label for="exampleInputUsername1">Fonction </label>
+                                    <input [(ngModel)]="professionWorker" value="professionWorker" type="text" class="typeahead" id="exampleInputUsername1">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputUsername1">Department </label>
+                                    <input [(ngModel)]="departmentNameWorker" value="departmentNameWorker" type="text" class="typeahead" id="exampleInputUsername1">
+                                </div>
+                                
+                                <button type="button" (click)="updateInformationClient()" class="btn btn-info container" data-bs-dismiss="modal">Modifier les données</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

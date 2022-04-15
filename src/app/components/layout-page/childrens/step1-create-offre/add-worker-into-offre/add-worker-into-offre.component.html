@@ -1,0 +1,265 @@
+<div class="col-12 grid-margin">
+
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <h4 class="card-title text-center">Etape 1</h4>
+                <form [formGroup]="form" (ngSubmit)="addToOffre()" class="form-sample">
+
+                    <ng-container *ngIf="visible1">
+
+                        <div class="form-group row">
+                            <div class="col">
+                                <label for="idOffre">Id-Offre</label>
+                                <div id="the-basics">
+
+                                    <input formControlName="idOffre" id="idOffre" name="idOffre" class="typeahead"
+                                        type="text" placeholder="Saisir ID-Offre suivant xxx-..." required autofocus>
+                                    <small *ngIf="exformFunction.idOffre.invalid && exformFunction.idOffre.touched"
+                                        class="text-danger" required autofocus>  l'Id-offre est obligatoire 
+                                        xxx-... !
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <label for="lfN">Nom Complet</label>
+                                <div id="bloodhound">
+                                    <select formControlName="lfN" name="lfN" id="lfN"
+                                        class="form-control" required autofocus>
+                                        <option selected="selected" disabled>Choisir une ressource</option>
+                                        <option *ngFor="let lfN of listfullName" [value]="lfN['fullName']">
+                                            {{lfN['fullName']}}   ({{lfN['profession']}})
+                                        </option>
+                                    </select>
+                                </div>
+                                <small *ngIf="exformFunction.lfN.invalid && exformFunction.lfN.touched"
+                                    class="text-danger" required autofocus> Choisir le nom de la ressource !
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col">
+                                <label for="nbHWOC">Nb°H effectués au Siège</label>
+                                <div id="the-basics">
+                                    <input formControlName="nbHWOC" id="nbHWOC" name="nbHWOC" class="typeahead"
+                                        type="number" placeholder="Hourly labor cost in headquarters..." required
+                                        autofocus>
+                                    <small *ngIf="exformFunction.nbHWOC.invalid && exformFunction.nbHWOC.touched"
+                                        class="text-danger" required autofocus> 1 Heure au Minimim !
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <label for="nbHWOS">Nb° H effectués sur Site</label>
+                                <div id="bloodhound">
+                                    <input formControlName="nbHWOS" id="nbHWOS" name="nbHWOS" class="typeahead"
+                                        type="number" placeholder="Hourly labor cost on site..." required autofocus>
+                                    <small *ngIf="exformFunction.nbHWOS.invalid && exformFunction.nbHWOS.touched"
+                                        class="text-danger" required autofocus> 1 Heure au Minimim !
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col">
+                                <label>Frais Généraux (FG)</label>
+                                <br>
+                                <ng5-slider [(value)]="value" [options]="options"></ng5-slider>
+
+                                <div class="text-right">
+                                    <button type="button" (click)="addToOffre()"
+                                        class="btn btn-inverse-danger btn-fw">Ajouter
+                                        </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </ng-container>
+                </form>
+                <ng-container *ngIf="visible2">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label>Id-Offre</label>
+                            <div class="col-sm-9">
+                                <input #box (keyup.enter)="onEnter(box.value)" type="text" class="form-control"
+                                    class="typeahead" placeholder="Saisir id-Offre..." />
+                            </div>
+
+                        </div>
+                        <ng-container *ngIf="visible3">
+                            <div class="col-lg-12 grid-margin stretch-card">
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Ressource
+                                                </th>
+                                                <th>
+                                                    Full Name
+                                                </th>
+                                                <th>
+                                                    N°Heures au Siège
+                                                </th>
+                                                <th>
+                                                    N°Heures sur Site
+                                                </th>
+                                                <th>
+                                                    FG%
+                                                </th>
+                                                <th>
+                                                    Proposition 
+                                                </th>
+                                                <th>
+                                                    Prix de Revient 
+                                                </th>
+                                                <th>
+                                                    Coûts
+                                                </th>
+                                                <th>
+                                                    Supprimer
+                                                </th>
+                                                <th>
+                                                    Modifier
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let item of GIFWCGO;">
+                                                <td class="py-1">
+                                                    <img src="{{item['profileWork']}}" alt="image" />
+                                                </td>
+                                                <td>
+                                                    {{item['fullName']}} </td>
+                                                <td>
+                                                    {{item['hoursWorkCompany']}}
+                                                </td>
+                                                <td>
+                                                    {{item['hoursWorkOutCompany']}}
+                                                </td>
+                                                <td>
+                                                    {{item['FG']}}
+                                                </td>
+                                                <td>
+                                                    {{item['tPropositionByWorker']}}
+                                                </td>
+                                                <td>
+                                                    {{item['tRevientByWorker']}}
+                                                </td>
+                                                <td>
+                                                    {{item['CostsByWorker']}}
+                                                </td>
+                                                <td>
+                                                    <a (click)="deleteAnWorkerFromOffre(item['fullName'])"><i
+                                                            class="mdi mdi-delete" style="font-size: 2em;"></i></a>
+                                                </td>
+                                                <td>
+                                                    <a (click)="editAnWorkerFromOffre(item['fullName'],item['FG'],item['hoursWorkCompany'],item['hoursWorkOutCompany'],item['idWorker'])"><i
+                                                            class="mdi mdi-table-edit me-5" data-bs-toggle="modal"
+                                                            data-bs-target="#exampleModal"
+                                                            style="font-size: 2em;"></i></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <!-- <div class="modal-header">
+                                                    <h5 class="modal-title text-danger" id="exampleModalLabel">Login
+                                                        Form</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-warning"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                </div> -->
+                                                <div class="modal-header">
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <h4 class="card-title centertext"><i>Modifier Détails Ressource</i></h4>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="card-body">
+                                                    <h4 class="card-title centertext">{{workerNameGlobale}}</h4>
+                                                    <div class="form-group row">
+                                                        <div class="col">
+                                                            <label>Id-Offre</label>
+                                                            <div id="the-basics">
+                                                                <input class="typeahead" type="text" value="{{idOffreSendGlobale}}" readonly>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <label>Frais Généraux</label>
+                                                            <div id="bloodhound">
+                                                                <input [(ngModel)]="FG" class="typeahead" type="number" value="FG">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="form-group row">
+                                                        <div class="col">
+                                                            <label>Nb° Heffectués au Siège</label>
+                                                            <div id="the-basics">
+                                                                <input [(ngModel)]="nbWorkOnCompany" class="typeahead" type="number" value="{{nbWorkOnCompany}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <label>Nb° H effectués sur Site</label>
+                                                            <div id="bloodhound">
+                                                                <input [(ngModel)]="nbWorkOnSite" class="typeahead" type="number" value="{{nbWorkOnSite}}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <button (click)="updateInformationClientTODB()" type="button" class="btn btn-info container" data-bs-dismiss="modal">Modifier
+                                                        Informations</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </ng-container>
+                        <!--We will add button browser for the image of worker in this div-->
+                    </div>
+                </ng-container>
+
+            </div>
+        </div>
+    </div>
+    <br>
+    <button type="button" (click)="searchOnOffreBy()" class="btn btn-inverse-info mdi mdi-account-search"> Search an
+        Offre</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    <button type="button" (click)="addWorkerInOffre()" class="btn btn-inverse-info mdi mdi mdi-plus"> Add
+        worker</button>
+</div>

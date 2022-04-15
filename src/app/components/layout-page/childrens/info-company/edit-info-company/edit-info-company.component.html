@@ -1,0 +1,137 @@
+  <div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Ma Société</h4>
+
+        <div class="image-upload text-center">
+          <label for="file-input">
+            <img src="{{logoCompany}}" width="250" />
+          </label>
+          <input id="file-input" name="file-input" type="file" (change)="onFileChange($event)" />
+        </div>
+        <div class="form-group">
+          <label for="exampleInputUsername1">Société</label>
+          <input [(ngModel)]="nameCompany" type="text" class="typeahead" value="{{nameCompany}}"
+            id="exampleInputUsername1" placeholder="Name Company ...">
+        </div>
+
+        <div class="form-group row">
+          <div class="col">
+            <label>Numéro Téléphone</label>
+            <div id="the-basics">
+              <input [(ngModel)]="telePhone" class="typeahead" type="number
+                    " placeholder="+216 xx xxx xxx">
+            </div>
+          </div>
+          <div class="col">
+            <label>Cellulaire</label>
+            <div id="bloodhound">
+              <input [(ngModel)]="cellNumber" class="typeahead" type="text" placeholder="+216 7x xxx xxx">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputUsername1">Site Web</label>
+          <input [(ngModel)]="webSite" type="text" class="typeahead" id="exampleInputUsername1"
+            placeholder="www.Micalo.tn">
+        </div>
+      </div>
+    </div>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title"> Informations sur la société</h4><br>
+        <br>
+        <div class="form-group row">
+          <div class="col">
+            <label>Numéro Registre du Commerce </label>
+            <div id="the-basics">
+              <input [(ngModel)]="taxRegNum" class="typeahead" type="number
+                    " placeholder="N°R.C...">
+            </div>
+          </div>
+          <div class="col">
+            <label>Devise</label>
+            <div id="bloodhound">
+              <input [(ngModel)]="currency" class="typeahead" type="text" placeholder="TND" value="{{currency}}">
+            </div>
+          </div>
+          <div class="col">
+            <label>Adresse Email</label>
+            <div id="bloodhound">
+              <input [(ngModel)]="emailUserCompany" class="typeahead" type="email" placeholder="xxxxxx@xxxxx.xxx">
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col">
+            <label>Nom</label>
+            <div id="the-basics">
+              <input [(ngModel)]="lastNameProfile" class="typeahead" type="number
+                    " placeholder="Last Name Profile...">
+            </div>
+          </div>
+          <div class="col">
+            <label>Prénom</label>
+            <div id="bloodhound">
+              <input [(ngModel)]="firstNameProfile" class="typeahead" type="text" placeholder="First Name...">
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputUsername1">Adresse Email </label>
+          <input [(ngModel)]="addressCompany" type="text" class="typeahead" id="exampleInputUsername1"
+            placeholder="Email Profile... ">
+        </div>
+
+
+        <div class="form-group row">
+          <div class="col">
+            <label>Ville</label>
+            <div id="the-basics">
+              <input [(ngModel)]="city" class="typeahead" type="text
+                    " placeholder="City...">
+            </div>
+          </div>
+          <div class="col">
+            <label>Code Postal</label>
+            <div id="bloodhound">
+              <input [(ngModel)]="zipCode" class="typeahead" type="number" placeholder="ZIP Code...">
+            </div>
+          </div>
+          <div class="col">
+            <label>Pays</label>
+            <div id="bloodhound">
+              <input [(ngModel)]="countryUser" class="typeahead" type="text" placeholder="TN"
+                value="{{countryUser}}">
+            </div>
+          </div>
+        </div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button (click)="saveMeButton()" type="button" class="btn btn-success">Sauvegarder</button>
+      </div>
+
+    </div>
+
+  </div>
