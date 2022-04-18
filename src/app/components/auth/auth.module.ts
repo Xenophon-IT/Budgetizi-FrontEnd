@@ -31,6 +31,8 @@ import { InfoClientComponent } from '../layout-page/childrens/info-client/info-c
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { NgxPrintModule } from 'ngx-print';
 import {DatePipe} from '@angular/common';
+import { AddProductIntoOffreComponent } from '../layout-page/childrens/step4-create-offre-product/add-product-into-offre/add-product-into-offre.component';
+import { CalculatePhase4OfferComponent } from '../layout-page/childrens/step4-create-offre-product/calculate-phase4-offer/calculate-phase4-offer.component';
 
 
 @NgModule({
@@ -50,7 +52,9 @@ import {DatePipe} from '@angular/common';
     MonitoringOfWorksComponent,
     CalculatePhase3OffreComponent,
     OffreFinaleComponent,
-    InfoClientComponent
+    InfoClientComponent,
+    AddProductIntoOffreComponent,
+    CalculatePhase4OfferComponent
   ],
   imports: [
     FormsModule,
@@ -86,7 +90,9 @@ import {DatePipe} from '@angular/common';
     MonitoringOfWorksComponent,
     CalculatePhase3OffreComponent,
     OffreFinaleComponent,
-    InfoClientComponent
+    InfoClientComponent,
+    AddProductIntoOffreComponent,
+    CalculatePhase4OfferComponent
   ],
   providers: [DatePipe]
 })

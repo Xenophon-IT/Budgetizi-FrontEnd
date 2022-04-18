@@ -39,13 +39,13 @@ export class LayoutPageComponent implements OnInit {
     this.firstNameProfile = valueDataInformation[1];
     this.lastNameProfile = valueDataInformation[2];
     this.emailProfile = valueDataInformation[3];
-    // this.imageProfileForUser = valueDataInformation[6];
+    this.imageProfileForUser = valueDataInformation[6];
     this.phoneUserNumber = valueDataInformation[4];
 
 
-    for (let i = 0; i < valueDataInformation[6].length-1; i++) {
-      this.imageProfileForUser +=  valueDataInformation[6][i]
-    }
+    // for (let i = 0; i < valueDataInformation[6].length-1; i++) {
+    //   this.imageProfileForUser +=  valueDataInformation[6][i]
+    // }
     console.log(this.imageProfileForUser)
 
     localStorage.setItem('phoneNumberOfUser',this.phoneUserNumber);

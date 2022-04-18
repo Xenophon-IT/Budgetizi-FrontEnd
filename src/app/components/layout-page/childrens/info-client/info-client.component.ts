@@ -126,7 +126,7 @@ export class InfoClientComponent implements OnInit {
             // console.log("cccccccccccccccccccccccc",val)
             if (val == 1) {
               Swal.fire(
-                //'Good job!',
+                'Good job!',
                 'Informations modifiées',
                 'success'
               )

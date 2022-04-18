@@ -21,7 +21,7 @@ export class CompanyInfoSettComponent implements OnInit {
   Address: any="--"
   telPhone: any="--";
   fixePhone: any="--"
-  logoCompany:any="data:image/jpeg;base64,";
+  logoCompany:any="";
 
   constructor(private http: HttpClient,private router: Router) {
     var key1,val1;

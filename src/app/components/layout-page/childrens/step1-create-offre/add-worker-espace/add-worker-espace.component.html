@@ -96,13 +96,13 @@
                                     <input formControlName="profileWorker" id="profileWorker" name="profileWorker"
                                         type="file" style="display: none" #file (change)="onFileChange($event)" required
                                         autofocus />
-                                    <button type="button" class="btn" (click)="file.click()"
+                                    <button type="button" class="btn" (click)="file.click()" aria-placeholder="Choose the picture please"
                                         class="file-upload-browse btn btn-primary"> Browse </button>
                                 </span>
-                                <small
+                                <!-- <small
                                     *ngIf="exformFunction.profileWorker.invalid && exformFunction.profileWorker.touched"
                                     class="text-danger" required autofocus>image du profile obligatoire !
-                                </small>
+                                </small> -->
                             </div>
 
                         </div>

@@ -29,7 +29,7 @@ export class EditInfoCompanyComponent implements OnInit {
   city: any="";
   zipCode: any="";
   countryUser: any="";
-  logoCompany: any = "data:image/jpeg;base64,";
+  logoCompany: any = "";
 
   constructor(private http: HttpClient, private router: Router) {
 

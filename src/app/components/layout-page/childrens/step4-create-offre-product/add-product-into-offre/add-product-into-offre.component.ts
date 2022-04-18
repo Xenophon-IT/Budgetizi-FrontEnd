@@ -6,32 +6,34 @@ import Swal from 'sweetalert2';
 import jwtDecode, { JwtPayload } from "jwt-decode";
 
 @Component({
-  selector: 'app-add-worker-into-offre',
-  templateUrl: './add-worker-into-offre.component.html',
-  styleUrls: ['./add-worker-into-offre.component.css']
+  selector: 'app-add-product-into-offre',
+  templateUrl: './add-product-into-offre.component.html',
+  styleUrls: ['./add-product-into-offre.component.css']
 })
-export class AddWorkerIntoOffreComponent implements OnInit {
+export class AddProductIntoOffreComponent implements OnInit {
   visible1: boolean = false;
   visible2: boolean = false;
   visible3: boolean = false;
   nameCompany: any;
   form: FormGroup = new FormGroup({});
-  globalFormula: any;
   listfullName: any;
   valGIWCFC: any;
-  GIFWCGO: any;
+  productStep4: any;
   idOffreSendGlobale: any;
-  value: number = 70;
+  valueMarge: number = 40;
+  valueRemise: number = 20;
   options: Options = {
     floor: 0,
     ceil: 100
   };
-  workerNameGlobale: any;
-  FG: any;
-  nbWorkOnCompany: any;
-  nbWorkOnSite: any;
-  idWorkerName: any;
 
+  idOffre : any;
+  referenceProduit: any;
+  nomProduit: any;
+  prixUnitaire: any;
+  quantity: any;
+  marge: any;
+  remise: any
 
   constructor(private http: HttpClient, private fb: FormBuilder) {
     this.form = fb.group({
@@ -39,11 +41,12 @@ export class AddWorkerIntoOffreComponent implements OnInit {
         Validators.required,
         Validators.pattern('[a-zA-Z]+\-[0-9]{1,3}')
       ]),
-      lfN: new FormControl('', Validators.required),
-      nbHWOC: new FormControl('', Validators.required),
-      nbHWOS: new FormControl('', Validators.required),
+      nomProduit: new FormControl('', Validators.required),
+      pDVHT: new FormControl('', Validators.required),
+      quantite: new FormControl('', Validators.required),
+      ref: new FormControl('', Validators.required),
+      desc : new FormControl('')
     });
-    let key, val;
     var key2,val2;
     var phoneUserNumber:any;
     var decoded;
@@ -58,18 +61,7 @@ export class AddWorkerIntoOffreComponent implements OnInit {
     const queryObj={
       phoneNumber
     }
-    this.http.post('http://127.0.0.1:5050/company/GetAllWorkerCompany', queryObj)
-      .subscribe(res => {
-        for ([key, val] of Object.entries(res)) {
-          if (key == "resutFunction") {
-            console.log(val);
-            this.listfullName = val;
-          }
-        }
-      })
   }
-
-
 
   get exformFunction() { return this.form.controls; }
 
@@ -108,10 +100,11 @@ export class AddWorkerIntoOffreComponent implements OnInit {
       phoneNumber
     }
     // console.log(valueModi)
-    this.http.post('http://127.0.0.1:5050/company/getOffreById', queryObj)
+    this.http.post('http://127.0.0.1:5050/company/getOffreStep4ById', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
-          if (key == "resutFunctionGIFWCGO") {
+          console.log("Test 2022")
+          if (key == "resultFunctionOffreStep4") {
             console.log("Test 2022")
             console.log(val)
 
@@ -124,7 +117,7 @@ export class AddWorkerIntoOffreComponent implements OnInit {
             }
             else {
               this.visible3 = !this.visible3
-              this.GIFWCGO = val;
+              this.productStep4 = val;
             }
           }
         }
@@ -135,7 +128,8 @@ export class AddWorkerIntoOffreComponent implements OnInit {
   addToOffre() {
     this.visible3 = !this.visible3
     var dataSend = this.form.value;
-    var valueSend = this.value;
+    var valueSendMarge = this.valueMarge;
+    var valueSendRemise = this.valueRemise;
     var key2,val2;
     var phoneUserNumber:any;
     var decoded;
@@ -145,8 +139,6 @@ export class AddWorkerIntoOffreComponent implements OnInit {
     for ([key2, val2] of Object.entries(decoded)) {
       phoneNumber = val2
     }
-    console.log("Phone Number after decoding")
-    console.log(phoneNumber)
     if (!this.form.valid) {
       Swal.fire({
         icon: 'error',
@@ -160,10 +152,11 @@ export class AddWorkerIntoOffreComponent implements OnInit {
       var key, val;
       const queryObj = {
         dataSend,
-        valueSend,
+        valueSendMarge,
+        valueSendRemise,
         phoneNumber
       }
-      this.http.post('http://127.0.0.1:5050/company/Step1Offre', queryObj)
+      this.http.post('http://127.0.0.1:5050/company/Step4Offre', queryObj)
         .subscribe(res => {
           for ([key, val] of Object.entries(res)) {
             if (key == "resutFunction") {
@@ -188,38 +181,37 @@ export class AddWorkerIntoOffreComponent implements OnInit {
     }
   }
 
-  editAnWorkerFromOffre(workerName: any, FGLocal: any, nbWorkOnCompanylocal: any, nbWorkOnSiteLocal: any, idWorkerNameLocal: any) {
-    this.workerNameGlobale = workerName
-    this.FG = FGLocal
-    this.nbWorkOnCompany = nbWorkOnCompanylocal
-    this.nbWorkOnSite = nbWorkOnSiteLocal
-    this.idWorkerName = idWorkerNameLocal
-    //console.log(workerName)
-    //console.log(idWorkerNameLocal)
+  editAnWorkerFromOffre(idOffre: any, referenceProduit: any, nomProduit: any, prixUnitaire: any, quantity: any,marge:any,remise:any) {
+    this.idOffre = idOffre
+    this.referenceProduit = referenceProduit
+    this.nomProduit = nomProduit
+    this.prixUnitaire = prixUnitaire
+    this.quantity = quantity
+    this.marge = marge;
+    this.remise = remise;
   }
 
   updateInformationClientTODB() {
-    //console.log(this.workerNameGlobale)
-    //console.log(this.FG)
-    //console.log(this.nbWorkOnCompany)
-    //console.log(this.nbWorkOnSite)
 
     var key, val;
-    var workerNameGlobaleSend = this.workerNameGlobale
-    var FGSend = this.FG
-    var nbWorkOnCompanySend = this.nbWorkOnCompany
-    var nbWorkOnSiteSend = this.nbWorkOnSite
-    var idWorkerNameSend = this.idWorkerName
-    var idOffreSendGlobaleSend = this.idOffreSendGlobale;
+    var idOffre = this.idOffre
+    var referenceProduit = this.referenceProduit
+    var nomProduit = this.nomProduit
+    var prixUnitaire = this.prixUnitaire
+    var quantity = this.quantity
+    var marge = this.marge;
+    var remise = this.remise;
+
     const queryObj = {
-      workerNameGlobaleSend,
-      FGSend,
-      nbWorkOnCompanySend,
-      nbWorkOnSiteSend,
-      idWorkerNameSend,
-      idOffreSendGlobaleSend
+      idOffre,
+      referenceProduit,
+      nomProduit,
+      prixUnitaire,
+      quantity,
+      marge,
+      remise
     }
-    this.http.post('http://127.0.0.1:5050/company/updateInformationOfStep1', queryObj)
+    this.http.post('http://127.0.0.1:5050/company/updateInformationOfStep4', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           this.visible3 = !this.visible3
@@ -228,25 +220,13 @@ export class AddWorkerIntoOffreComponent implements OnInit {
       })
   }
 
-  deleteAnWorkerFromOffre(workerProfile: any) {
+  deleteAnWorkerFromOffre(idOffre: any,referenceProduit:any) {
     var key, val;
-    var workerProfileSend = workerProfile;
-    var idOffreSendGlobaleSend = this.idOffreSendGlobale;
-    var key2,val2;
-    var phoneUserNumber:any;
-    var decoded;
-    var phoneNumber;    
-    phoneUserNumber = localStorage.getItem('phoneNumberOfUser');
-    decoded = jwtDecode<JwtPayload>(phoneUserNumber)
-    for ([key2, val2] of Object.entries(decoded)) {
-      phoneNumber = val2
-    }
-    console.log("Phone Number after decoding")
-    console.log(phoneNumber)
+    var idOffre = idOffre;
+    var referenceProduit = referenceProduit;
     const queryObj = {
-      workerProfileSend,
-      idOffreSendGlobaleSend,
-      phoneNumber
+      idOffre,
+      referenceProduit,
     }
     this.visible3 = !this.visible3
 
@@ -260,10 +240,10 @@ export class AddWorkerIntoOffreComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.http.post('http://127.0.0.1:5050/company/deleteAnWorkerFromOffre', queryObj)
+        this.http.post('http://127.0.0.1:5050/company/deleteAnWorkerFromOffreStep4', queryObj)
           .subscribe(res => {
             for ([key, val] of Object.entries(res)) {
-              this.visible3 = !this.visible3
+              // this.visible3 = !this.visible3
               this.onEnter(this.idOffreSendGlobale)
             }
           })

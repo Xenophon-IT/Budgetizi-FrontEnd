@@ -163,6 +163,7 @@ export class AddWorkerEspaceComponent implements OnInit {
               this.getAllWorker();
               //this.visible2 = !this.visible2;
               this.form.reset();
+              this.imageProfileForUser="UPLOAD IMAGE WORKER"
             }
             else {
               Swal.fire({
@@ -200,7 +201,7 @@ export class AddWorkerEspaceComponent implements OnInit {
               if (key == "resutFunction") {
                 if (val == 1) {
                   Swal.fire(
-                    'Supprimé!',
+                    'Deleted!',
                     'La ressource a été supprimée.',
                     'success'
                   )
@@ -248,6 +249,7 @@ export class AddWorkerEspaceComponent implements OnInit {
             console.log(val)
             this.router.navigateByUrl('/LayoutPage/AddWorkerEspace', {});
             this.getAllWorker()
+            this.userProfileImage=""
           }
         }
       })

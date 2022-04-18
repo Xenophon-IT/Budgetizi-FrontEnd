@@ -16,8 +16,8 @@ export class DashbordPageComponent implements OnInit {
   firstNameProfile: any;
   lastNameProfile: any;
   emailProfile: any;
-  logoCompany: any = "D:\Dali\B.IZI.V.Alfa\ButGitizi\Partie-BackEnd\Images\default-avatar.jpg";
-
+  // logoCompany: any = "D:\Xenophon-IT\ButGitizi-Xenophon-IT\Budgetizi-BackEnd-ButGitizi-BackEnd-01\Images\CompanyLogo.png";
+  logoCompany: any = "";
   constructor(private http: HttpClient, private router: Router) {
     var key = "phoneUserNumber";
     let key1,val1;
@@ -46,8 +46,7 @@ export class DashbordPageComponent implements OnInit {
           nameOfCompany = informationData[1]; 
           this.nameClientCompany = nameOfCompany;
           console.log(informationData[7])
-          // this.logoCompany = informationData[7]
-
+          this.logoCompany = informationData[7]
         }
       }
     })

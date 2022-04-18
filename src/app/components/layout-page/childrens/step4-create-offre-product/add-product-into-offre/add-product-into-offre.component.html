@@ -3,7 +3,7 @@
     <div class="card">
         <div class="card-body">
             <div class="row">
-                <h4 class="card-title text-center">Etape 2</h4>
+                <h4 class="card-title text-center">Etape 4</h4>
                 <form [formGroup]="form" (ngSubmit)="addToOffre()" class="form-sample">
 
                     <ng-container *ngIf="visible1">
@@ -12,70 +12,91 @@
                             <div class="col">
                                 <label for="idOffre">Id-Offre</label>
                                 <div id="the-basics">
-
                                     <input formControlName="idOffre" id="idOffre" name="idOffre" class="typeahead"
                                         type="text" placeholder="Enter ID Offre like xxx-..." required autofocus>
                                     <small *ngIf="exformFunction.idOffre.invalid && exformFunction.idOffre.touched"
-                                        class="text-danger" required autofocus> Id-offre obligatoire et doit être sous la forme
+                                        class="text-danger" required autofocus> The Id offre is Required and should be
                                         xxx-... !
                                     </small>
                                 </div>
                             </div>
                             <div class="col">
-                                <label for="fullName">Nom Complet</label>
-                                <div id="bloodhound">
-                                    <select formControlName="fullName" name="fullName" id="fullName"
-                                        class="form-control" required autofocus>
-                                        <option selected="selected" disabled>Choisir une ressource</option>
-                                        <option *ngFor="let lfN of listfullName" [value]="lfN['fullName']">
-                                            {{lfN['fullName']}}   ({{lfN['profession']}})
-                                        </option>
-                                    </select>
-                                </div>
-                                <small *ngIf="exformFunction.fullName.invalid && exformFunction.fullName.touched"
-                                    class="text-danger" required autofocus> Choisir le nom de la ressource!
-                                </small>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col">
-                                <label for="nbHWOC">Nb°Heures au siège en H-J</label>
+                                <label for="nomProduit">Nom produit</label>
                                 <div id="the-basics">
-                                    <input formControlName="nbHWOC" id="nbHWOC" name="nbHWOC" class="typeahead"
-                                        type="number" placeholder="Hourly labor cost in headquarters..." required
-                                        autofocus>
-                                    <small *ngIf="exformFunction.nbHWOC.invalid && exformFunction.nbHWOC.touched"
-                                        class="text-danger" required autofocus> 1 H-J Minimim !
-                                    </small>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <label for="nbHWOS">Nb° Heures sur Site en H-J </label>
-                                <div id="bloodhound">
-                                    <input formControlName="nbHWOS" id="nbHWOS" name="nbHWOS" class="typeahead"
-                                        type="number" placeholder="Hourly labor cost on site..." required autofocus>
-                                    <small *ngIf="exformFunction.nbHWOS.invalid && exformFunction.nbHWOS.touched"
-                                        class="text-danger" required autofocus> 1 H-J Minimim !
+                                    <input formControlName="nomProduit" id="nomProduit" name="nomProduit" class="typeahead"
+                                        type="text" placeholder="Enter product name" required autofocus>
+                                    <small *ngIf="exformFunction.nomProduit.invalid && exformFunction.nomProduit.touched"
+                                        class="text-danger" required autofocus> The product name is required !
                                     </small>
                                 </div>
                             </div>
                         </div>
-                        
 
                         <div class="form-group row">
                             <div class="col">
-                                <label>Frais Généraux (FG)</label>
+                                <label for="pDVHT">Prix Unitaire (HT)</label>
+                                <div id="the-basics">
+                                    <input formControlName="pDVHT" id="pDVHT" name="pDVHT" class="typeahead"
+                                        type="number" placeholder="Enter prix de vente unitaire..." required
+                                        autofocus>
+                                    <small *ngIf="exformFunction.pDVHT.invalid && exformFunction.pDVHT.touched"
+                                        class="text-danger" required autofocus> The price of the product is required !
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <label for="quantite">Quantité</label>
+                                <div id="bloodhound">
+                                    <input formControlName="quantite" id="quantite" name="quantite" class="typeahead"
+                                        type="number" placeholder="Enter quantite..." required autofocus>
+                                    <small *ngIf="exformFunction.quantite.invalid && exformFunction.quantite.touched"
+                                        class="text-danger" required autofocus> The quantite of the product is required !
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col">
+                                <label for="ref">Réference </label>
+                                <div id="the-basics">
+                                    <input formControlName="ref" id="ref" name="ref" class="typeahead"
+                                        type="text" placeholder="Enter reference..." required
+                                        autofocus>
+                                    <small *ngIf="exformFunction.ref.invalid && exformFunction.ref.touched"
+                                        class="text-danger" required autofocus> The reference of the product is required !
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <label for="desc">Description</label>
+                                <div id="bloodhound">
+                                    <textarea formControlName="desc" id="desc" name="desc" class="typeahead"
+                                        type="number" placeholder="Enter description..." > </textarea>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <div class="col">
+                                <label>Marge</label>
                                 <br>
-                                <ng5-slider [(value)]="value" [options]="options"></ng5-slider>
+                                <ng5-slider [(value)]="valueMarge" [options]="options"></ng5-slider>
+                            </div>
+                            <div class="col">
+                                <label>Remise</label>
+                                <br>
+                                <ng5-slider [(value)]="valueRemise" [options]="options"></ng5-slider>
 
                                 <div class="text-right">
                                     <button type="button" (click)="addToOffre()"
-                                        class="btn btn-inverse-danger btn-fw">Ajouter</button>
+                                        class="btn btn-inverse-danger btn-fw">Add
+                                        to offre</button>
                                 </div>
-
                             </div>
                         </div>
+
                     </ng-container>
                 </form>
                 <ng-container *ngIf="visible2">
@@ -95,28 +116,31 @@
                                         <thead>
                                             <tr>
                                                 <th>
-                                                    Ressource
+                                                    Reference Produit
                                                 </th>
                                                 <th>
-                                                    Nom Complet
+                                                    Nom Produit
                                                 </th>
                                                 <th>
-                                                    N° Heures-Jours au siège
+                                                    Prix Unitaire
                                                 </th>
                                                 <th>
-                                                    Heures-Jours sur Site
+                                                    Quantité
                                                 </th>
                                                 <th>
-                                                    FG%
+                                                    Marge %
                                                 </th>
                                                 <th>
-                                                    Proposition 
+                                                    Remise % 
                                                 </th>
                                                 <th>
-                                                    Prix de Revient 
+                                                    T. après Marge 
                                                 </th>
                                                 <th>
-                                                    Coûts
+                                                    T. après Remise
+                                                </th>
+                                                <th>
+                                                    Totale HT
                                                 </th>
                                                 <th>
                                                     Supprimer
@@ -127,35 +151,39 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let item of GIFWCGO;">
-                                                <td class="py-1">
-                                                    <img src="{{item['profileWork']}}" alt="image" />
+                                            <tr *ngFor="let item of productStep4;">
+                                                <td>
+                                                    {{item['referenceProduit']}} </td>
+                                                <td>
+                                                    {{item['nomProduit']}}
                                                 </td>
                                                 <td>
-                                                    {{item['fullName']}} </td>
-                                                <td>
-                                                    {{item['hoursWorkCompany']}}
+                                                    {{item['prixUnitaire']}}
                                                 </td>
                                                 <td>
-                                                    {{item['hoursWorkOutCompany']}}
+                                                    {{item['quantity']}}
                                                 </td>
                                                 <td>
-                                                    {{item['FG']}}
+                                                    {{item['marge']}}
                                                 </td>
                                                 <td>
-                                                    {{item['tPropositionByWorker']}}
+                                                    {{item['remise']}}
                                                 </td>
                                                 <td>
-                                                    {{item['tRevientByWorker']}}
+                                                    {{item['totaleApresMarge']}}
                                                 </td>
                                                 <td>
-                                                    {{item['CostsByWorker']}}
+                                                    {{item['totaleApresRemise']}}
                                                 </td>
                                                 <td>
-                                                    <a (click)="deleteAnWorkerFromOffre(item['fullName'])"><i class="mdi mdi-delete" style="font-size: 2em;"></i></a>
+                                                    {{item['totaleHT']}}
                                                 </td>
                                                 <td>
-                                                    <a (click)="editAnWorkerFromOffreStep2(item['fullName'],item['FG'],item['hoursWorkCompany'],item['hoursWorkOutCompany'],item['idWorker'])"><i
+                                                    <a (click)="deleteAnWorkerFromOffre(item['idOffre'],item['referenceProduit'])"><i
+                                                            class="mdi mdi-delete" style="font-size: 2em;"></i></a>
+                                                </td>
+                                                <td>
+                                                    <a (click)="editAnWorkerFromOffre(item['idOffre'],item['referenceProduit'],item['nomProduit'],item['prixUnitaire'],item['quantity'],item['marge'],item['remise'])"><i
                                                             class="mdi mdi-table-edit me-5" data-bs-toggle="modal"
                                                             data-bs-target="#exampleModal"
                                                             style="font-size: 2em;"></i></a>
@@ -163,46 +191,34 @@
                                             </tr>
                                         </tbody>
                                     </table>
+
                                     <!-- Modal -->
                                     <div class="modal fade" id="exampleModal" tabindex="-1"
                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
-                                                <!-- <div class="modal-header">
-                                                    <h5 class="modal-title text-danger" id="exampleModalLabel">Login
-                                                        Form</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-warning"
-                                                        data-bs-dismiss="modal">Close</button>
-                                                </div> -->
                                                 <div class="modal-header">
                                                     &nbsp;&nbsp;&nbsp;&nbsp;
                                                     &nbsp;&nbsp;&nbsp;&nbsp;
                                                     &nbsp;&nbsp;&nbsp;&nbsp;
                                                     &nbsp;&nbsp;&nbsp;&nbsp;
-                                                    <h4 class="card-title centertext"><i>Modifier les informations de la ressource</i></h4>
+                                                    <h4 class="card-title centertext"><i>Modifier Détails Ressource</i></h4>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="card-body">
-                                                    <h4 class="card-title centertext">{{workerNameGlobale}}</h4>
+                                                    <h4 class="card-title centertext">{{referenceProduit}}</h4>
                                                     <div class="form-group row">
                                                         <div class="col">
                                                             <label>Id-Offre</label>
                                                             <div id="the-basics">
-                                                                <input class="typeahead" type="text" value="{{idOffreSendGlobale}}" readonly>
+                                                                <input class="typeahead" type="text" value="{{idOffre}}" readonly>
                                                             </div>
                                                         </div>
                                                         <div class="col">
-                                                            <label>Frais Généraux</label>
+                                                            <label>Nom Produit</label>
                                                             <div id="bloodhound">
-                                                                <input [(ngModel)]="FG" class="typeahead" type="number" value="FG">
+                                                                <input [(ngModel)]="nomProduit" class="typeahead" type="text" value="nomProduit">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -210,18 +226,33 @@
 
                                                     <div class="form-group row">
                                                         <div class="col">
-                                                            <label>Nb° H-D au Siège</label>
+                                                            <label>Quantité Produit</label>
                                                             <div id="the-basics">
-                                                                <input [(ngModel)]="nbWorkOnCompany" class="typeahead" type="number" value="{{nbWorkOnCompany}}">
+                                                                <input [(ngModel)]="quantity" class="typeahead" type="text" value="{{quantity}}">
                                                             </div>
                                                         </div>
                                                         <div class="col">
-                                                            <label>Nb° H-D sur Site</label>
+                                                            <label>Prix Unitaire</label>
                                                             <div id="bloodhound">
-                                                                <input [(ngModel)]="nbWorkOnSite" class="typeahead" type="number" value="{{nbWorkOnSite}}">
+                                                                <input [(ngModel)]="prixUnitaire" class="typeahead" type="number" value="{{prixUnitaire}}">
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <div class="form-group row">
+                                                        <div class="col">
+                                                            <label>Marge</label>
+                                                            <div id="the-basics">
+                                                                <input [(ngModel)]="marge" class="typeahead" type="number" value="{{marge}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <label>Remise</label>
+                                                            <div id="bloodhound">
+                                                                <input [(ngModel)]="remise" class="typeahead" type="number" value="{{remise}}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                     <button (click)="updateInformationClientTODB()" type="button" class="btn btn-info container" data-bs-dismiss="modal">Modifier
                                                         Informations</button>
                                                 </div>
@@ -240,8 +271,8 @@
         </div>
     </div>
     <br>
-    <button type="button" (click)="searchOnOffreBy()" class="btn btn-inverse-info mdi mdi-account-search"> Rechercher une offre
-        </button>
+    <button type="button" (click)="searchOnOffreBy()" class="btn btn-inverse-info mdi mdi-account-search"> Search an
+        Offre</button>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -258,6 +289,6 @@
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-    <button type="button" (click)="addWorkerInOffre()" class="btn btn-inverse-info mdi mdi mdi-plus"> Ajouter
-        </button>
+    <button type="button" (click)="addWorkerInOffre()" class="btn btn-inverse-info mdi mdi mdi-plus"> Add
+        worker</button>
 </div>

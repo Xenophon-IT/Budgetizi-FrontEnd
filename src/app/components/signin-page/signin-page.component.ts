@@ -181,7 +181,7 @@ export class SigninPageComponent implements OnInit {
                 .subscribe(res => {
                   for ([key1, val1] of Object.entries(res)) {
                     if (key1 == "resutFunction") {
-                      // console.log(val1);
+                      console.log(val1);
                       this.dataInformation = val1;
                       this.router.navigateByUrl('/LayoutPage', { state: {dataInformation: this.dataInformation} });
                     }

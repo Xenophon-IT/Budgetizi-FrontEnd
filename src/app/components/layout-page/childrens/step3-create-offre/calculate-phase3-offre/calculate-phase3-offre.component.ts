@@ -60,22 +60,22 @@ export class CalculatePhase3OffreComponent implements OnInit {
           if (key == "resutFunction") {
             //console.log(val);
             if (val.length == 0) {
-              Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: "You don't have this offre try again !",
-              })
+              // Swal.fire({
+              //   icon: 'error',
+              //   title: 'Oops...',
+              //   text: "You don't have this offre try again !",
+              // })
             }
             else {
               this.informationGlobOff = val;
-              // this.visible1 = !this.visible1;
-              // this.visible2 = !this.visible2
+              this.visible1 = !this.visible1;
+              this.visible2 = !this.visible2
             }
           }
         }
       })
 
-      this.http.post('http://127.0.0.1:5050/company/getAllInformationOfAnWorker', queryObj)
+      this.http.post('http://127.0.0.1:5050/company/getAllInformationForStep3', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           this.visible1 = !this.visible1;

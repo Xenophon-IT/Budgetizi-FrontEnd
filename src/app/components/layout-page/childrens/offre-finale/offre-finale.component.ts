@@ -29,6 +29,9 @@ export class OffreFinaleComponent implements OnInit {
   getAllInformationForStep3Worker: any;
   getAllInformationForStep3: any;
   getAllInformationForFinalOffre: any;
+  getAllProducts: any;
+  sommeOFProducts:any;
+  idOffreGlobale: any;
 
   constructor(private http: HttpClient) {
 
@@ -37,19 +40,12 @@ export class OffreFinaleComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addWorkerInOffre() {
-    this.visible1 = !this.visible1
-  }
-
-  searchOnOffreBy() {
-    this.visible2 = !this.visible2
-
-  }
   onEnter(value: string) {
     var key, val;
     this.value = value;
     //console.log(this.value);
     var idOffreSend = value;
+    this.idOffreGlobale = value
     var key2,val2;
     var phoneUserNumber:any;
     var decoded;
@@ -110,5 +106,46 @@ export class OffreFinaleComponent implements OnInit {
   }
   printWindow() {
     window.print()
+  }
+  listOfProducts(event: any){
+    var idOffreSend = this.idOffreGlobale;
+    var key2,val2;
+    var phoneUserNumber:any;
+    var decoded;
+    var phoneNumber;
+    phoneUserNumber = localStorage.getItem('phoneNumberOfUser');
+    decoded = jwtDecode<JwtPayload>(phoneUserNumber)
+    for ([key2, val2] of Object.entries(decoded)) {
+      phoneNumber = val2
+    }
+
+    console.log("Phone Number after decoding")
+    const queryObj={
+      idOffreSend,
+      phoneNumber
+    }
+    let key,val;
+    console.log(event.target.checked);
+    if(event.target.checked==true){
+      this.visible2 = !this.visible2
+      this.http.post('http://127.0.0.1:5050/company/getAllInformationForStep4', queryObj)
+      .subscribe(res => {
+        for ([key, val] of Object.entries(res)) {
+          this.visible1 = !this.visible1;
+          if (key == "resutFunction7") {
+            console.log(val)
+            this.getAllProducts = val
+          }
+          if (key == "resutFunction8") {
+            console.log(val)
+            this.sommeOFProducts = val[1]
+          }
+
+        }
+      })
+    }
+    else{
+      this.visible2 = !this.visible2
+    }
   }
 }
