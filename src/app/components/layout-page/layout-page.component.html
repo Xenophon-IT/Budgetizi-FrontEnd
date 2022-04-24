@@ -420,9 +420,9 @@
             </a>
             <div class="collapse" id="form-elements4">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"><a class="nav-link" href="#" [routerLink]="['AddProductIntoOffreComponent']">
+                <li class="nav-item"><a class="nav-link" href="#" [routerLink]="['AddProductIntoOffre']">
                   Ajout produit</a></li>
-                <li class="nav-item"><a class="nav-link" href="#" [routerLink]="['CalculatePhase4OfferComponent']">Phase 4</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" [routerLink]="['CalculatePhase4Offer']">Phase 4</a></li>
               </ul>
             </div>
           </li>
@@ -438,8 +438,9 @@
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <div>
                     <div class="btn-wrapper">
-                      <a href="#" class="btn btn-otline-dark align-items-center"><i class="icon-share"></i> Partager</a>
-                      <a class="btn btn-otline-dark"><i class="icon-printer"></i> Imprimer</a>
+                      <a href="#" [routerLink]="['SendToClient']" class="btn btn-otline-dark align-items-center"><i class="icon-share"></i> Partager</a>
+                      <a href="#" [routerLink]="['PrintOffres']" class="btn btn-otline-dark"><i class="icon-printer"></i> Imprimer</a>
+                      <a href="#" [routerLink]="['ArchivesOffres']"class="btn btn-otline-dark"><i class="icon-archive"></i> Archives</a>
                       <a href="#" [routerLink]="['OffreFinale']" class="btn btn-primary text-white me-0"><i class="icon-download"></i>Chercher</a>
                     </div>
                   </div>

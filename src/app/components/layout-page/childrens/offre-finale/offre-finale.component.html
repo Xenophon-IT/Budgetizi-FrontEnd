@@ -1,177 +1,172 @@
-<div class="col-12 grid-margin">
+<div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <form class="form-sample">
-                <div class="row">
-                    <h4 class="card-title text-center">Final Offre</h4>
+            <h4 class="card-title text-center">Liste des Ressources </h4>
+            <div class="form-group row">
+                <label>Id-Offre</label>
+                <div class="col-sm-9">
+                    <input #box (keyup.enter)="onEnter(box.value)" type="text" class="form-control"
+                        class="typeahead" placeholder="Enter your id Offre..." />
+                </div>
 
-                    <div class="col-md-10">
-                        <div class="form-group row">
-                            <label>Id-Offre</label>
-                            <div class="col-sm-9">
-                                <input #box (keyup.enter)="onEnter(box.value)" type="text" class="form-control"
-                                    class="typeahead" placeholder="Enter your id Offre..." />
-                            </div>
+            </div>
+            <ng-container *ngIf="visible1">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr class="centertext">
+                                <th rowspan="2"></th>
+                                <!-- <th rowspan="2">Désignation</th> -->
+                                <!-- <th rowspan="2">Worker Profile</th> -->
+                                <th rowspan="2">Full Name</th>
+                                <th rowspan="2">Unit</th>
+                                <th colspan="4">Worker Price</th>
+                                <th rowspan="2">FG%</th>
+                                <th rowspan="2">Costs DT</th>
+                                <th colspan="3">Company Marge</th>
+                            </tr>
+                            <tr class="centertext">
+                                <th>Q. Company</th>
+                                <th>Q. Site</th>
+                                <th>T. Proposition</th>
+                                <th>T. Revient</th>
+                                <th>Marge Brute</th>
+                                <th>Marge Nette</th>
+                                <th>Marge %</th>
+                            </tr>
 
-                        </div>
+                        </thead>
 
-                        <!-- <ng-container *ngIf="visible1"> -->
-                        <ng-container *ngIf="visible1">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr class="centertext">
-                                        <th rowspan="2"></th>
-                                        <!-- <th rowspan="2">Désignation</th> -->
-                                        <!-- <th rowspan="2">Worker Profile</th> -->
-                                        <th rowspan="2">Full Name</th>
-                                        <th rowspan="2">Unit</th>
-                                        <th colspan="4">Worker Price</th>
-                                        <th rowspan="2">FG%</th>
-                                        <th rowspan="2">Costs DT</th>
-                                        <th colspan="3">Company Marge</th>
-                                    </tr>
-                                    <tr class="centertext">
-                                        <th>Q. Company</th>
-                                        <th>Q. Site</th>
-                                        <th>T. Proposition</th>
-                                        <th>T. Revient</th>
-                                        <th>Marge Brute</th>
-                                        <th>Marge Nette</th>
-                                        <th>Marge %</th>
-                                    </tr>
-
-                                </thead>
-
-                                <tbody>
-                                    <tr *ngFor="let item of getAllInformation">
-                                        <!-- <td>Step1</td> -->
-                                        <td class="py-1">
-                                            <img src="{{item['profileWork']}}" alt="image" />
-                                        </td>
-                                        <td>{{item['fullName']}}</td>
-                                        <td>Hour</td>
-                                        <td>{{item['hoursWorkCompany']}}</td>
-                                        <td>{{item['hoursWorkOutCompany']}}</td>
-                                        <td>{{item['tPropositionByWorker']}}</td>
-                                        <td>{{item['tRevientByWorker']}}</td>
-                                        <td>{{item['FG']}} %</td>
-                                        <td>{{item['CostsByWorker']}}</td>
-                                        <td>{{item['tMargeBrute']}}</td>
-                                        <td>{{item['tMargeNet']}}</td>
-                                        <td>{{item['tMargeNetPC']}} %</td>
-                                    </tr>
-                                    <tr *ngFor="let item of getAllInformationForStep1">
-                                        <th>S/Totale1</th>
-                                        <!-- <td></td> -->
-                                        <td></td>
-                                        <td>T. Hour</td>
-                                        <td>{{item['totaleQtyWork']}}</td>
-                                        <td></td>
-                                        <td>{{item['totaleProposition']}}</td>
-                                        <td>{{item['totaleRevient']}}</td>
-                                        <td></td>
-                                        <td>{{item['CostsGlobale']}}</td>
-                                        <td>{{item['totaleMargeBrute']}}</td>
-                                        <td>{{item['totaleMargeNet']}}</td>
-                                        <td>{{item['totaleMargeNetPC']}} %</td>
-                                    </tr>
-                                    <tr *ngFor="let item of getAllInformationForStep2Worker">
-                                        <!-- <td>Step2</td> -->
-                                        <td class="py-1">
-                                            <img src="{{item['profileWork']}}" alt="image" />
-                                        </td>
-                                        <td>{{item['fullName']}}</td>
-                                        <td>Hour-Day</td>
-                                        <td>{{item['hoursWorkCompany']}}</td>
-                                        <td>{{item['hoursWorkOutCompany']}}</td>
-                                        <td>{{item['tPropositionByWorker']}}</td>
-                                        <td>{{item['tRevientByWorker']}}</td>
-                                        <td>{{item['FG']}} %</td>
-                                        <td>{{item['CostsByWorker']}}</td>
-                                        <td>{{item['tMargeBrute']}}</td>
-                                        <td>{{item['tMargeNet']}}</td>
-                                        <td>{{item['tMargeNetPC']}} %</td>
-                                    </tr>
-                                    <tr *ngFor="let item of getAllInformationForStep2">
-                                        <th>S/Totale2</th>
-                                        <!-- <td></td> -->
-                                        <td></td>
-                                        <td>T. Hours-Days</td>
-                                        <td>{{item['totaleQtyWork']}}</td>
-                                        <td></td>
-                                        <td>{{item['totaleProposition']}}</td>
-                                        <td>{{item['totaleRevient']}}</td>
-                                        <td></td>
-                                        <td>{{item['CostsGlobale']}}</td>
-                                        <td>{{item['totaleMargeBrute']}}</td>
-                                        <td>{{item['totaleMargeNet']}}</td>
-                                        <td>{{item['totaleMargeNetPC']}} %</td>
-                                    </tr>
-                                    <tr *ngFor="let item of getAllInformationForStep3Worker">
-                                        <!-- <td>Step3</td> -->
-                                        <td class="py-1">
-                                            <img src="{{item['profileWork']}}" alt="image" />
-                                        </td>
-                                        <td>{{item['fullName']}}</td>
-                                        <td>Hour-Day</td>
-                                        <td>{{item['hoursWorkCompany']}}</td>
-                                        <td>{{item['hoursWorkOutCompany']}}</td>
-                                        <td>{{item['tPropositionByWorker']}}</td>
-                                        <td>{{item['tRevientByWorker']}}</td>
-                                        <td>{{item['FG']}} %</td>
-                                        <td>{{item['CostsByWorker']}}</td>
-                                        <td>{{item['tMargeBrute']}}</td>
-                                        <td>{{item['tMargeNet']}}</td>
-                                        <td>{{item['tMargeNetPC']}} %</td>
-                                    </tr>
-                                    <tr *ngFor="let item of getAllInformationForStep3">
-                                        <th>S/Totale3</th>
-                                        <!-- <td></td> -->
-                                        <td></td>
-                                        <td>T. Hours-Days</td>
-                                        <td>{{item['totaleQtyWork']}}</td>
-                                        <td></td>
-                                        <td>{{item['totaleProposition']}}</td>
-                                        <td>{{item['totaleRevient']}}</td>
-                                        <td></td>
-                                        <td>{{item['CostsGlobale']}}</td>
-                                        <td>{{item['totaleMargeBrute']}}</td>
-                                        <td>{{item['totaleMargeNet']}}</td>
-                                        <td>{{item['totaleMargeNetPC']}} %</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Total S1/2/3</th>
-                                        <!-- <td></td> -->
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <th>Proposition</th>
-                                        <th>Cost Price</th>
-                                        <th>Cost+FG</th>
-                                        <td></td>
-                                        <th>Marge Brute</th>
-                                        <th>Marge Nette</th>
-                                        <th>Marge Finale</th>
-                                    </tr>
-                                    <tr *ngFor="let item of getAllInformationForFinalOffre">
-                                        <th></th>
-                                        <!-- <td></td> -->
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>{{item['globalProposition']}}</td>
-                                        <td>{{item['globalRevient']}}</td>
-                                        <td>{{item['globalRevientAndFG']}}</td>
-                                        <td></td>
-                                        <td>{{item['globalMargeBrute']}}</td>
-                                        <td>{{item['globalMargeNete']}}</td>
-                                        <td>{{item['globalFinaleMarge']}} %</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <br>
+                        <tbody>
+                            <tr *ngFor="let item of getAllInformation">
+                                <!-- <td>Step1</td> -->
+                                <td class="py-1">
+                                    <img src="{{item['profileWork']}}" alt="image" />
+                                </td>
+                                <td>{{item['fullName']}}</td>
+                                <td>Hour</td>
+                                <td>{{item['hoursWorkCompany']}}</td>
+                                <td>{{item['hoursWorkOutCompany']}}</td>
+                                <td>{{item['tPropositionByWorker']}}</td>
+                                <td>{{item['tRevientByWorker']}}</td>
+                                <td>{{item['FG']}} %</td>
+                                <td>{{item['CostsByWorker']}}</td>
+                                <td>{{item['tMargeBrute']}}</td>
+                                <td>{{item['tMargeNet']}}</td>
+                                <td>{{item['tMargeNetPC']}} %</td>
+                            </tr>
+                            <tr *ngFor="let item of getAllInformationForStep1">
+                                <th>S/Totale1</th>
+                                <!-- <td></td> -->
+                                <td></td>
+                                <td>T. Hour</td>
+                                <td>{{item['totaleQtyWork']}}</td>
+                                <td></td>
+                                <td>{{item['totaleProposition']}}</td>
+                                <td>{{item['totaleRevient']}}</td>
+                                <td></td>
+                                <td>{{item['CostsGlobale']}}</td>
+                                <td>{{item['totaleMargeBrute']}}</td>
+                                <td>{{item['totaleMargeNet']}}</td>
+                                <td>{{item['totaleMargeNetPC']}} %</td>
+                            </tr>
+                            <tr *ngFor="let item of getAllInformationForStep2Worker">
+                                <!-- <td>Step2</td> -->
+                                <td class="py-1">
+                                    <img src="{{item['profileWork']}}" alt="image" />
+                                </td>
+                                <td>{{item['fullName']}}</td>
+                                <td>Hour-Day</td>
+                                <td>{{item['hoursWorkCompany']}}</td>
+                                <td>{{item['hoursWorkOutCompany']}}</td>
+                                <td>{{item['tPropositionByWorker']}}</td>
+                                <td>{{item['tRevientByWorker']}}</td>
+                                <td>{{item['FG']}} %</td>
+                                <td>{{item['CostsByWorker']}}</td>
+                                <td>{{item['tMargeBrute']}}</td>
+                                <td>{{item['tMargeNet']}}</td>
+                                <td>{{item['tMargeNetPC']}} %</td>
+                            </tr>
+                            <tr *ngFor="let item of getAllInformationForStep2">
+                                <th>S/Totale2</th>
+                                <!-- <td></td> -->
+                                <td></td>
+                                <td>T. Hours-Days</td>
+                                <td>{{item['totaleQtyWork']}}</td>
+                                <td></td>
+                                <td>{{item['totaleProposition']}}</td>
+                                <td>{{item['totaleRevient']}}</td>
+                                <td></td>
+                                <td>{{item['CostsGlobale']}}</td>
+                                <td>{{item['totaleMargeBrute']}}</td>
+                                <td>{{item['totaleMargeNet']}}</td>
+                                <td>{{item['totaleMargeNetPC']}} %</td>
+                            </tr>
+                            <tr *ngFor="let item of getAllInformationForStep3Worker">
+                                <!-- <td>Step3</td> -->
+                                <td class="py-1">
+                                    <img src="{{item['profileWork']}}" alt="image" />
+                                </td>
+                                <td>{{item['fullName']}}</td>
+                                <td>Hour-Day</td>
+                                <td>{{item['hoursWorkCompany']}}</td>
+                                <td>{{item['hoursWorkOutCompany']}}</td>
+                                <td>{{item['tPropositionByWorker']}}</td>
+                                <td>{{item['tRevientByWorker']}}</td>
+                                <td>{{item['FG']}} %</td>
+                                <td>{{item['CostsByWorker']}}</td>
+                                <td>{{item['tMargeBrute']}}</td>
+                                <td>{{item['tMargeNet']}}</td>
+                                <td>{{item['tMargeNetPC']}} %</td>
+                            </tr>
+                            <tr *ngFor="let item of getAllInformationForStep3">
+                                <th>S/Totale3</th>
+                                <!-- <td></td> -->
+                                <td></td>
+                                <td>T. Hours-Days</td>
+                                <td>{{item['totaleQtyWork']}}</td>
+                                <td></td>
+                                <td>{{item['totaleProposition']}}</td>
+                                <td>{{item['totaleRevient']}}</td>
+                                <td></td>
+                                <td>{{item['CostsGlobale']}}</td>
+                                <td>{{item['totaleMargeBrute']}}</td>
+                                <td>{{item['totaleMargeNet']}}</td>
+                                <td>{{item['totaleMargeNetPC']}} %</td>
+                            </tr>
+                            <tr>
+                                <th>Total S1/2/3</th>
+                                <!-- <td></td> -->
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <th>Proposition</th>
+                                <th>Revient</th>
+                                <th>Cost+FG</th>
+                                <td></td>
+                                <th>Marge Brute</th>
+                                <th>Marge Nette</th>
+                                <th>Marge Finale</th>
+                            </tr>
+                            <tr *ngFor="let item of getAllInformationForFinalOffre">
+                                <th></th>
+                                <!-- <td></td> -->
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>{{item['globalProposition']}}</td>
+                                <td>{{item['globalRevient']}}</td>
+                                <td>{{item['globalRevientAndFG']}}</td>
+                                <td></td>
+                                <td>{{item['globalMargeBrute']}}</td>
+                                <td>{{item['globalMargeNete']}}</td>
+                                <td>{{item['globalFinaleMarge']}} %</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
                             <div class="right">
                                 <!-- Liste fourniture -->
                                 <label class="switch">
@@ -228,10 +223,10 @@
                                                 {{item['quantity']}}
                                             </td>
                                             <td>
-                                                {{item['marge']}}
+                                                {{item['marge']}} %
                                             </td>
                                             <td>
-                                                {{item['remise']}}
+                                                {{item['remise']}} %
                                             </td>
                                             <td>
                                                 {{item['totaleApresMarge']}}
@@ -259,7 +254,7 @@
                                             <td></td>
                                             <td></td>
                                             <th>Proposition</th>
-                                            <th>Cost Price</th>
+                                            <th>Revient</th>
                                             <th>Cost+FG</th>
                                             <th>Marge Brute</th>
                                             <th>Marge Nette</th>
@@ -269,7 +264,7 @@
                                             <td></td>
                                             <td></td>
                                             <td></td>
-                                            <th>{{item['globalProposition']+sommeOFProducts}}</th>
+                                            <th>{{totaleProposition}}</th>
                                             <td>{{item['globalRevient']}}</td>
                                             <td>{{item['globalRevientAndFG']}}</td>
                                             <td>{{item['globalMargeBrute']}}</td>
@@ -279,19 +274,17 @@
                                 
                                     </tbody>
                                 </table>
+                                <br>
+                                <div class="col">
+                                    <div class="text-right">
+                                        <button type="button" (click)="addNegotiation()"
+                                            class="btn btn-inverse-info btn-fw">Add in Négociation</button>
+                                    </div>
+                                </div>
+                                
                             </ng-container>
-                        </ng-container>
-                        <!--We will add button browser for the image of worker in this div-->
-                    </div>
-                    <br><br>
-
                 </div>
-                <!-- <ng-container *ngIf="visible1">
-                    <button (click)="printWindow" printSectionId="offreFinale" class="print-button center"><span class="print-icon center"></span></button>
-                </ng-container> -->
-            </form>
+            </ng-container>
         </div>
     </div>
-    <br>
-
 </div>
