@@ -85,7 +85,7 @@ export class SigninPageComponent implements OnInit {
       faceRecogn
     }
 
-    this.http.post('http://127.0.0.1:5050/client/signIn', queryObj)
+    this.http.post('http://20.127.19.239/client/signIn', queryObj)
       .subscribe(res => {
         // console.log(res)
         for ([key, val] of Object.entries(res)) {
@@ -132,7 +132,7 @@ export class SigninPageComponent implements OnInit {
       phoneNumberToAnCodeLocal
     }
     // console.log(phoneNumberToAnCodeLocal)
-    this.http.post('http://127.0.0.1:5050/client/sendAnotherCodePhone', queryObj)
+    this.http.post('http://20.127.19.239/client/sendAnotherCodePhone', queryObj)
     .subscribe(res => {
     })
   }
@@ -157,7 +157,7 @@ export class SigninPageComponent implements OnInit {
       })
     }
     else{
-      this.http.post('http://127.0.0.1:5050/client/checkCodeNotif', queryObj)
+      this.http.post('http://20.127.19.239/client/checkCodeNotif', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           if (key == "variableCodeCheck") {
@@ -177,7 +177,7 @@ export class SigninPageComponent implements OnInit {
                   timer: 1500
                 })
                 this.myModal = "";
-                this.http.post('http://127.0.0.1:5050/client/getInformationClient', queryObj)
+                this.http.post('http://20.127.19.239/client/getInformationClient', queryObj)
                 .subscribe(res => {
                   for ([key1, val1] of Object.entries(res)) {
                     if (key1 == "resutFunction") {

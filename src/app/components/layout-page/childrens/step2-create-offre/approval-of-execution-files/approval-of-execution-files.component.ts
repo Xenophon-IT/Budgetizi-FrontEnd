@@ -58,7 +58,7 @@ export class ApprovalOfExecutionFilesComponent implements OnInit {
     const queryObj={
       phoneNumber
     }
-    this.http.post('http://127.0.0.1:5050/company/GetAllWorkerCompany', queryObj)
+    this.http.post('http://20.127.19.239/company/GetAllWorkerCompany', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           if (key == "resutFunction") {
@@ -109,7 +109,7 @@ export class ApprovalOfExecutionFilesComponent implements OnInit {
       phoneNumber
     }
     //console.log(valueModi)
-    this.http.post('http://127.0.0.1:5050/company/getOffreStep2ById', queryObj)
+    this.http.post('http://20.127.19.239/company/getOffreStep2ById', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           if (key == "resutFunctionGIFWCGO") {
@@ -171,7 +171,7 @@ export class ApprovalOfExecutionFilesComponent implements OnInit {
         valueSend,
         phoneNumber
       }
-      this.http.post('http://127.0.0.1:5050/company/Step2Offre', queryObj)
+      this.http.post('http://20.127.19.239/company/Step2Offre', queryObj)
         .subscribe(res => {
           for ([key, val] of Object.entries(res)) {
             if (key == "resutFunction") {
@@ -227,7 +227,7 @@ export class ApprovalOfExecutionFilesComponent implements OnInit {
       confirmButtonText: 'Oui, supprimer!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.http.post('http://127.0.0.1:5050/company/deleteAnWorkerFromOffreStep2', queryObj)
+        this.http.post('http://20.127.19.239/company/deleteAnWorkerFromOffreStep2', queryObj)
           .subscribe(res => {
             for ([key, val] of Object.entries(res)) {
               if (key == "resutFunction") {
@@ -265,7 +265,7 @@ export class ApprovalOfExecutionFilesComponent implements OnInit {
       idOffreSendGlobaleSend,
       idWorkerGlobaleSend
     }
-    this.http.post('http://127.0.0.1:5050/company/updateInformationOfStep2', queryObj)
+    this.http.post('http://20.127.19.239/company/updateInformationOfStep2', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           this.visible3 = !this.visible3

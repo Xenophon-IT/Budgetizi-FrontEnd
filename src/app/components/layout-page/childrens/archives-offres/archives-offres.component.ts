@@ -40,7 +40,7 @@ export class ArchivesOffresComponent implements OnInit {
     const queryObj = {
       phoneNumber
     }
-    this.http.post('http://127.0.0.1:5050/company/archivesOffres', queryObj)
+    this.http.post('http://20.127.19.239/company/archivesOffres', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           if (key == "resutFunction") {
@@ -55,7 +55,7 @@ export class ArchivesOffresComponent implements OnInit {
     //   idOffreSend
     // }
 
-    // this.http.post('http://127.0.0.1:5050/company/getOffreFromArchives', queryObj2)
+    // this.http.post('http://20.127.19.239/company/getOffreFromArchives', queryObj2)
     //   .subscribe(res => {
     //     for ([key, val] of Object.entries(res)) {
     //       if (key == "resutFunction") {
@@ -85,7 +85,7 @@ export class ArchivesOffresComponent implements OnInit {
       idOffreSend
     }
     console.log(idOffreSend)
-    this.http.post('http://127.0.0.1:5050/company/getOffreFromArchives', queryObj)
+    this.http.post('http://20.127.19.239/company/getOffreFromArchives', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           if (key == "resutFunction") {
@@ -133,7 +133,7 @@ export class ArchivesOffresComponent implements OnInit {
         remiseSend,
         statusSend
       }
-      this.http.post('http://127.0.0.1:5050/company/updateInformationOffreNegociation', queryObj)
+      this.http.post('http://20.127.19.239/company/updateInformationOffreNegociation', queryObj)
         .subscribe(res => {
           for ([key, val] of Object.entries(res)) {
             if (key == "resutFunction") {
@@ -149,7 +149,7 @@ export class ArchivesOffresComponent implements OnInit {
               const queryObj = {
                 phoneNumber
               }
-              this.http.post('http://127.0.0.1:5050/company/archivesOffres', queryObj)
+              this.http.post('http://20.127.19.239/company/archivesOffres', queryObj)
                 .subscribe(res => {
                   for ([key, val] of Object.entries(res)) {
                     if (key == "resutFunction") {

@@ -44,7 +44,7 @@ export class CompanyInfoSettComponent implements OnInit {
     }
 
     var nameOfCompany =""
-    this.http.post('http://127.0.0.1:5050/company/getInformationFromCompanyDB', queryObj)
+    this.http.post('http://20.127.19.239/company/getInformationFromCompanyDB', queryObj)
     .subscribe(res => {
       for ([key1, val1] of Object.entries(res)) {
         if (key1 == "resutFunction") {

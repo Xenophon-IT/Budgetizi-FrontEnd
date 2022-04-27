@@ -128,7 +128,7 @@
                                 </tr>
                                 <tr>
                                     <th>Fourniture des équipements du projets TTC</th>
-                                    <td class="text-center">{{totalePropositionS4}}</td>
+                                    <td class="text-center">{{globalPropositionStPrWR}}</td>
                                 </tr>
 
                             </tbody>
@@ -158,7 +158,7 @@
                                     <th rowspan="2">TOTAL TTC</th>
                                     <td class="text-center">{{totalePropositionS1 + totalePropositionS2 +
                                         totalePropositionS3 +
-                                        (totalePropositionS4*1.19)}}</td>
+                                        (globalPropositionStPrWR*1.19)}}</td>
                                 </tr>
 
                             </tbody>
@@ -195,7 +195,7 @@
         </div>
     </div>
         <div class="text-right">
-            <button type="button" (click)="ClickPDF()" class="btn btn-outline-info btn-icon-text">
+            <button type="button" (click)="ClickPDF()" class="btn btn-outline-info btn-icon-text mdi mdi-printer">
                 Print
                 <i class="fas fa-print"></i>
             </button>

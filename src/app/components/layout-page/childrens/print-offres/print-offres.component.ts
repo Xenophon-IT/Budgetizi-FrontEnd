@@ -35,6 +35,7 @@ export class PrintOffresComponent{
   sommeOFProducts: any;
   totaleProposition: any;
   idOffreGlobale: any;
+  totaleMargeNet: any
 
   @ViewChild('content', {static: false}) el! : ElementRef;
   print(){
@@ -74,12 +75,12 @@ export class PrintOffresComponent{
       phoneNumber
     }
 
-    this.http.post('http://127.0.0.1:5050/company/checkCompleteOffre', queryObj)
+    this.http.post('http://20.127.19.239/company/checkCompleteOffre', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           if (key == "resutFunction") {
             if (val == 1) {
-              this.http.post('http://127.0.0.1:5050/company/getAllInformationOfAnWorker', queryObj)
+              this.http.post('http://20.127.19.239/company/getAllInformationOfAnWorker', queryObj)
                 .subscribe(res => {
                   for ([key, val] of Object.entries(res)) {
                     this.visible1 = !this.visible1;
@@ -157,7 +158,7 @@ export class PrintOffresComponent{
       phoneNumber
     }
     let key, val;
-    this.http.post('http://127.0.0.1:5050/company/getAllInformationForStep4', queryObj)
+    this.http.post('http://20.127.19.239/company/getAllInformationForStep4', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           if (key == "resutFunction7") {
@@ -165,9 +166,11 @@ export class PrintOffresComponent{
             this.getAllProducts = val
           }
           if (key == "resutFunction8") {
-            console.log(val)
-            this.sommeOFProducts = val[1]
-            this.totaleProposition = val[0]
+            console.log("sssssssssssssssssssssss");
+            console.log(val);
+            this.totaleMargeNet = val[1];
+            this.totaleProposition = val[0];
+            this.sommeOFProducts = val[3];
           }
 
         }

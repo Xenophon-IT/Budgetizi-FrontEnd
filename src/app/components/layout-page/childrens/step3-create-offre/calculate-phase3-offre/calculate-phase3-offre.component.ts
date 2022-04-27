@@ -54,7 +54,7 @@ export class CalculatePhase3OffreComponent implements OnInit {
       phoneNumber
     }
 
-    this.http.post('http://127.0.0.1:5050/company/calculPhase3Offre', queryObj)
+    this.http.post('http://20.127.19.239/company/calculPhase3Offre', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           if (key == "resutFunction") {
@@ -75,7 +75,7 @@ export class CalculatePhase3OffreComponent implements OnInit {
         }
       })
 
-      this.http.post('http://127.0.0.1:5050/company/getAllInformationForStep3', queryObj)
+      this.http.post('http://20.127.19.239/company/getAllInformationForStep3', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           this.visible1 = !this.visible1;

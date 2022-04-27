@@ -364,7 +364,7 @@
                                     <th></th>
                                     <td>{{item['globalRevientAndFG']}}</td>
                                     <td>{{item['globalMargeBrute']}}</td>
-                                    <th>{{item['globalMargeNete']}}</th>
+                                    <th>{{totaleMargeNet}}</th>
                                     <td>{{item['globalFinaleMarge']}} %</td>
                                 </tr>
                             </tbody>
@@ -373,14 +373,13 @@
                 </div>
             </ng-container>
         </div>
-        <ng-container *ngIf="visible2">
-            <div class="text-right">
-                <button type="button" (click)="print()" class="btn btn-outline-info btn-icon-text">
-                    Print
-                    <i class="fas fa-print"></i>
-                </button>
-
-            </div>
-        </ng-container>
     </div>
 </div>
+<ng-container *ngIf="visible2">
+    <div class="text-right">
+        <button type="button" (click)="print()" class="btn btn-outline-info btn-icon-text mdi mdi-printer">
+            Print
+            <i class="fas fa-print"></i>
+        </button>
+    </div>
+</ng-container>

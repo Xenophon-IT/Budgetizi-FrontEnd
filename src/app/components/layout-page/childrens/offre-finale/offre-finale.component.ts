@@ -30,9 +30,10 @@ export class OffreFinaleComponent implements OnInit {
   getAllInformationForStep3: any;
   getAllInformationForFinalOffre: any;
   getAllProducts: any;
-  sommeOFProducts: any;
+  globalMargeNete: any;
   totaleProposition: any;
   idOffreGlobale: any;
+  sommeOFProducts: any
 
   constructor(private http: HttpClient) {
 
@@ -63,7 +64,7 @@ export class OffreFinaleComponent implements OnInit {
       phoneNumber
     }
 
-    this.http.post('http://127.0.0.1:5050/company/getAllInformationOfAnWorker', queryObj)
+    this.http.post('http://20.127.19.239/company/getAllInformationOfAnWorker', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           this.visible1 = !this.visible1;
@@ -129,7 +130,7 @@ export class OffreFinaleComponent implements OnInit {
     console.log(event.target.checked);
     if (event.target.checked == true) {
       this.visible2 = !this.visible2
-      this.http.post('http://127.0.0.1:5050/company/getAllInformationForStep4', queryObj)
+      this.http.post('http://20.127.19.239/company/getAllInformationForStep4', queryObj)
         .subscribe(res => {
           for ([key, val] of Object.entries(res)) {
             this.visible1 = !this.visible1;
@@ -138,9 +139,11 @@ export class OffreFinaleComponent implements OnInit {
               this.getAllProducts = val
             }
             if (key == "resutFunction8") {
+              console.log("sssssssssssssssssssssss")
               console.log(val)
-              this.sommeOFProducts = val[1]
+              this.globalMargeNete = val[1]
               this.totaleProposition = val[0]
+              this.sommeOFProducts = val[3]
             }
 
           }
@@ -181,7 +184,7 @@ export class OffreFinaleComponent implements OnInit {
           nameNegociateur
         }
 
-        this.http.post('http://127.0.0.1:5050/company/addNegociateur', queryObj)
+        this.http.post('http://20.127.19.239/company/addNegociateur', queryObj)
           .subscribe(res => {
             for ([key, val] of Object.entries(res)) {
               if (key == "resutFunction") {

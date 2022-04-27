@@ -88,12 +88,12 @@ export class SendToClientComponent implements OnInit {
       phoneNumber
     }
 
-    this.http.post('http://127.0.0.1:5050/company/checkCompleteOffre', queryObj)
+    this.http.post('http://20.127.19.239/company/checkCompleteOffre', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           if (key == "resutFunction") {
             if (val == 1) {
-              this.http.post('http://127.0.0.1:5050/company/getAllInformationOfAnWorker', queryObj)
+              this.http.post('http://20.127.19.239/company/getAllInformationOfAnWorker', queryObj)
                 .subscribe(res => {
                   for ([key, val] of Object.entries(res)) {
                     this.visible1 = !this.visible1;
@@ -120,7 +120,7 @@ export class SendToClientComponent implements OnInit {
       phoneNumber
     }
 
-    this.http.post('http://127.0.0.1:5050/company/getAllNesscaryInformation', queryObj)
+    this.http.post('http://20.127.19.239/company/getAllNesscaryInformation', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           if (key == "resutFunctionOFCompanies") {
@@ -157,7 +157,7 @@ export class SendToClientComponent implements OnInit {
             console.log(val)
           }
           if (key == "resutFunctionForStep4") {
-            this.totalePropositionS4 = val[1]
+            this.totalePropositionS4 = val[0]
             // for(let i=0; i<val.length;i++){
             //   this.totalePropositionS4 = val[i]["totaleProposition"]
             // }
@@ -171,6 +171,8 @@ export class SendToClientComponent implements OnInit {
               this.globalPropositionStPrWR = val[i]["globalPropositionStPrWR"]
               this.negociataion = val[i]["nomNegociateur"]
             }
+            console.log(this.globalPropositionStPrWR)
+            console.log(this.negociataion)
             console.log("FFFFFFFFFFF")
           }
           if (key == "resutFunctionForNegotitaion") {
