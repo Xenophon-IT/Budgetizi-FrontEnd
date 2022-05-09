@@ -21,7 +21,7 @@ export class CompanyInfoSettComponent implements OnInit {
   Address: any="--"
   telPhone: any="--";
   fixePhone: any="--"
-  logoCompany:any="data:image/jpeg;base64,";
+  logoCompany:any="";
 
   constructor(private http: HttpClient,private router: Router) {
     var key1,val1;
@@ -44,7 +44,7 @@ export class CompanyInfoSettComponent implements OnInit {
     }
 
     var nameOfCompany =""
-    this.http.post('http://127.0.0.1:5050/company/getInformationFromCompanyDB', queryObj)
+    this.http.post('http://localhost:5050/company/getInformationFromCompanyDB', queryObj)
     .subscribe(res => {
       for ([key1, val1] of Object.entries(res)) {
         if (key1 == "resutFunction") {

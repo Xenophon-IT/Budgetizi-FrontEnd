@@ -1,0 +1,392 @@
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title text-center">Offre de Prix</h4>
+            <div class="form-group row">
+                <label>Id-Offre</label>
+                <div class="col-sm-9">
+                    <input #box (keyup.enter)="onEnter(box.value)" type="text" class="form-control" class="typeahead"
+                        placeholder="Enter your id Offre..." />
+                </div>
+
+            </div>
+            <ng-container *ngIf="visible2">
+                <div class="table-responsive">
+                    <div id="content" #content>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th colspan="12">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        Offre Financière</th>
+                                </tr>
+                                <tr class="centertext">
+                                    <th rowspan="2"></th>
+                                    <!-- <th rowspan="2">Désignation</th> -->
+                                    <!-- <th rowspan="2">Worker Profile</th> -->
+                                    <th colspan="0">Nom Complet</th>
+                                    <th colspan="0">Unit</th>
+                                    <th colspan="4">Coût ressource</th>
+                                    <th colspan="0">FG%</th>
+                                    <th colspan="0">Coûts DT</th>
+                                    <th colspan="3">Marge</th>
+                                </tr>
+                                <tr class="centertext">
+                                    <th></th>
+                                    <th></th>
+                                    <th>Q. Siège</th>
+                                    <th>Q. Site</th>
+                                    <th>T. Proposition</th>
+                                    <th>T. Revient</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th>Marge Brute</th>
+                                    <th>Marge Nette</th>
+                                    <th>Marge %</th>
+                                </tr>
+
+                            </thead>
+                            <tr>
+                                <th colspan="12">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    Etape1: Assistance du MO 
+                                </th>
+                            </tr>
+                            <tbody>
+                                <tr *ngFor="let item of getAllInformation">
+                                    <!-- <td>Step1</td> -->
+                                    <td class="py-1">
+                                        <!-- <img src="{{item['profileWork']}}" alt="image" /> -->
+                                    </td>
+                                    <td>{{item['fullName']}}</td>
+                                    <td>Heures</td>
+                                    <td >{{item['hoursWorkCompany']}}</td>
+                                    <td>{{item['hoursWorkOutCompany']}}</td>
+                                    <td>{{item['tPropositionByWorker']}}</td>
+                                    <td>{{item['tRevientByWorker']}}</td>
+                                    <td>{{item['FG']}} %</td>
+                                    <td>{{item['CostsByWorker']}}</td>
+                                    <td>{{item['tMargeBrute']}}</td>
+                                    <td>{{item['tMargeNet']}}</td>
+                                    <td>{{item['tMargeNetPC']}} %</td>
+                                </tr>
+                                <tr *ngFor="let item of getAllInformationForStep1">
+                                    <th>Total Etape1</th>
+                                    <!-- <td></td> -->
+                                   <!-- !<td></td> -->
+                                    <td>T. Heures</td>
+                                    <td>{{item['totaleQtyWork']}}</td>
+                                    <td></td>
+                                    <td>{{item['totaleProposition']}}</td>
+                                    <td>{{item['totaleRevient']}}</td>
+                                    <td></td>
+                                    <td>{{item['CostsGlobale']}}</td>
+                                    <td>{{item['totaleMargeBrute']}}</td>
+                                    <td>{{item['totaleMargeNet']}}</td>
+                                    <td>{{item['totaleMargeNetPC']}} %</td>
+                                </tr>
+
+                                <tr>
+                                    <th colspan="12">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        Etape2: Approbation des dossiers d'exécution
+                                    </th>
+                                </tr>
+                               
+                                <tr *ngFor="let item of getAllInformationForStep2Worker">
+                                    <!-- <td>Step2</td> -->
+                                    <td class="py-1">
+                                        <!-- <img src="{{item['profileWork']}}" alt="image" /> -->
+                                    </td>
+                                    <td>{{item['fullName']}}</td>
+                                    <td>Heures-Jour</td>
+                                    <td>{{item['hoursWorkCompany']}}</td>
+                                    <td>{{item['hoursWorkOutCompany']}}</td>
+                                    <td>{{item['tPropositionByWorker']}}</td>
+                                    <td>{{item['tRevientByWorker']}}</td>
+                                    <td>{{item['FG']}} %</td>
+                                    <td>{{item['CostsByWorker']}}</td>
+                                    <td>{{item['tMargeBrute']}}</td>
+                                    <td>{{item['tMargeNet']}}</td>
+                                    <td>{{item['tMargeNetPC']}} %</td>
+                                </tr>
+                                
+                                <tr *ngFor="let item of getAllInformationForStep2">
+                                    <th>Total Etape2</th>
+                                    <!-- <td></td> -->
+                                    <!-- <td></td> -->
+                                    <td>T. Heures-Jours</td>
+                                    <td>{{item['totaleQtyWork']}}</td>
+                                    <td></td>
+                                    <td>{{item['totaleProposition']}}</td>
+                                    <td>{{item['totaleRevient']}}</td>
+                                    <td></td>
+                                    <td>{{item['CostsGlobale']}}</td>
+                                    <td>{{item['totaleMargeBrute']}}</td>
+                                    <td>{{item['totaleMargeNet']}}</td>
+                                    <td>{{item['totaleMargeNetPC']}} %</td>
+                                </tr>
+                               
+                                <tr *ngFor="let item of getAllInformationForStep3Worker">
+                                    <!-- <td>Step3</td> -->
+                                    <td class="py-1">
+                                        <!-- <img src="{{item['profileWork']}}" alt="image" /> -->
+                                    </td>
+                                    <td>{{item['fullName']}}</td>
+                                    <td>Heure-Jour</td>
+                                    <td>{{item['hoursWorkCompany']}}</td>
+                                    <td>{{item['hoursWorkOutCompany']}}</td>
+                                    <td>{{item['tPropositionByWorker']}}</td>
+                                    <td>{{item['tRevientByWorker']}}</td>
+                                    <td>{{item['FG']}} %</td>
+                                    <td>{{item['CostsByWorker']}}</td>
+                                    <td>{{item['tMargeBrute']}}</td>
+                                    <td>{{item['tMargeNet']}}</td>
+                                    <td>{{item['tMargeNetPC']}} %</td>
+                                </tr>
+                                <tr *ngFor="let item of getAllInformationForStep3">
+                                    <th>Total Etape3</th>
+                                    <!-- <td></td> -->
+                                    <td></td>
+                                    <td>T. Heures-Jour</td>
+                                    <td>{{item['totaleQtyWork']}}</td>
+                                    <td></td>
+                                    <td>{{item['totaleProposition']}}</td>
+                                    <td>{{item['totaleRevient']}}</td>
+                                    <td></td>
+                                    <td>{{item['CostsGlobale']}}</td>
+                                    <td>{{item['totaleMargeBrute']}}</td>
+                                    <td>{{item['totaleMargeNet']}}</td>
+                                    <td>{{item['totaleMargeNetPC']}} %</td>
+                                </tr>
+                                <tr>
+                                    <th colspan="12">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        Etape3 : Suivi des travaux
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>Total </th>
+                                    <!-- <td></td> -->
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <th>Proposition</th>
+                                    <th>Revient</th>
+                                    <td></td>
+                                    <th>Coût+FG</th>
+                                    <th>Marge Brute</th>
+                                    <th>Marge Nette</th>
+                                    <th>Marge</th>
+                                </tr>
+                                <tr *ngFor="let item of getAllInformationForFinalOffre">
+                                    <th></th>
+                                    <!-- <td></td> -->
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>{{item['globalProposition']}}</td>
+                                    <td>{{item['globalRevient']}}</td>
+                                    <td></td>
+                                    <td>{{item['globalRevientAndFG']}}</td>
+                                    <td>{{item['globalMargeBrute']}}</td>
+                                    <td>{{item['globalMargeNete']}}</td>
+                                    <td>{{item['globalFinaleMarge']}} %</td>
+                                </tr>
+                                <tr>
+                                    <th colspan="12">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        Offre Technique</th>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <th>
+                                        Référence Produit
+                                    </th>
+                                    <th>
+                                        Nom Produit
+                                    </th>
+                                    <th>
+                                        Prix Unitaire
+                                    </th>
+                                    <th>
+                                        Quantité
+                                    </th>
+                                    <th>
+                                        Marge %
+                                    </th>
+                                    <th>
+                                        Remise %
+                                    </th>
+                                    <th>
+                                        T. après Marge
+                                    </th>
+                                    <th>
+                                        T. après Remise
+                                    </th>
+                                    <th>
+                                        Total HT
+                                    </th>
+                                    <th></th>
+                                </tr>
+                                <tr *ngFor="let item of getAllProducts">
+                                    <td></td>
+                                    <td>
+                                        {{item['referenceProduit']}} </td>
+                                    <td>
+                                        {{item['nomProduit']}}
+                                    </td>
+                                    <td>
+                                        {{item['prixUnitaire']}}
+                                    </td>
+                                    <td>
+                                        {{item['quantity']}}
+                                    </td>
+                                    <td>
+                                        {{item['marge']}} %
+                                    </td>
+                                    <td>
+                                        {{item['remise']}} %
+                                    </td>
+                                    <td>
+                                        {{item['totaleApresMarge']}}
+                                    </td>
+                                    <td>
+                                        {{item['totaleApresRemise']}}
+                                    </td>
+                                    <td>
+                                        {{item['totaleHT']}}
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>Total Etape 4</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th>{{sommeOFProducts}} DT</th>
+                                    <th></th>
+                                </tr>
+                                <tr>
+                                    <th colspan="12">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        Etape 4: Services/Matériaux & Matières premières
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th colspan="12">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        Offre Technique + Financière</th>
+                                </tr>
+                                <tr>
+                                    <th>Total Général</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <th>Proposition</th>
+                                    <th>Revient</th>
+                                    <th></th>
+                                    <th>Coût+FG</th>
+                                    <th>Marge Brute</th>
+                                    <th>Marge Nette</th>
+                                    <th>Marge Finale</th>
+                                </tr>
+                                <tr *ngFor="let item of getAllInformationForFinalOffre">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <th>{{totaleProposition}}</th>
+                                    <td>{{item['globalRevient']}}</td>
+                                    <th></th>
+                                    <td>{{item['globalRevientAndFG']}}</td>
+                                    <td>{{item['globalMargeBrute']}}</td>
+                                    <th>{{totaleMargeNet}}</th>
+                                    <td>{{item['globalFinaleMarge']}} %</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>
+<ng-container *ngIf="visible2">
+    <div class="text-right">
+        <button type="button" (click)="print()" class="btn btn-outline-info btn-icon-text mdi mdi-printer">
+            Impression
+            <i class="fas fa-print"></i>
+        </button>
+    </div>
+</ng-container>

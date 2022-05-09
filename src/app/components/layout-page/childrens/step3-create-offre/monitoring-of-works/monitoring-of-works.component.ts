@@ -57,7 +57,7 @@ export class MonitoringOfWorksComponent implements OnInit {
     const queryObj={
       phoneNumber
     }
-    this.http.post('http://127.0.0.1:5050/company/GetAllWorkerCompany', queryObj)
+    this.http.post('http://localhost:5050/company/GetAllWorkerCompany', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           if (key == "resutFunction") {
@@ -108,7 +108,7 @@ export class MonitoringOfWorksComponent implements OnInit {
       phoneNumber
     }
     // console.log(valueModi)
-    this.http.post('http://127.0.0.1:5050/company/getOffreStep3ById', queryObj)
+    this.http.post('http://localhost:5050/company/getOffreStep3ById', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           if (key == "resutFunctionGIFWCGO") {
@@ -170,7 +170,7 @@ export class MonitoringOfWorksComponent implements OnInit {
         valueSend,
         phoneNumber
       }
-      this.http.post('http://127.0.0.1:5050/company/Step3Offre', queryObj)
+      this.http.post('http://localhost:5050/company/Step3Offre', queryObj)
         .subscribe(res => {
           for ([key, val] of Object.entries(res)) {
             if (key == "resutFunction") {
@@ -226,7 +226,7 @@ export class MonitoringOfWorksComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.http.post('http://127.0.0.1:5050/company/deleteAnWorkerFromOffreStep3', queryObj)
+        this.http.post('http://localhost:5050/company/deleteAnWorkerFromOffreStep3', queryObj)
           .subscribe(res => {
             for ([key, val] of Object.entries(res)) {
               if (key == "resutFunction") {
@@ -264,7 +264,7 @@ export class MonitoringOfWorksComponent implements OnInit {
       idOffreSendGlobaleSend,
       idWorkerGlobaleSend
     }
-    this.http.post('http://127.0.0.1:5050/company/updateInformationOfStep3', queryObj)
+    this.http.post('http://localhost:5050/company/updateInformationOfStep3', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           this.visible3 = !this.visible3

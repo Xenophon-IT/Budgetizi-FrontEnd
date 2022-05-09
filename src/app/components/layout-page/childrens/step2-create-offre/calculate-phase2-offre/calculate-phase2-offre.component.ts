@@ -54,7 +54,7 @@ export class CalculatePhase2OffreComponent implements OnInit {
       phoneNumber
     }
 
-    this.http.post('http://127.0.0.1:5050/company/calculPhase2Offre', queryObj)
+    this.http.post('http://localhost:5050/company/calculPhase2Offre', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           if (key == "resutFunction") {
@@ -68,15 +68,15 @@ export class CalculatePhase2OffreComponent implements OnInit {
             }
             else{
               this.informationGlobOff = val;
-              // this.visible1 = !this.visible1;
-              // this.visible2 = !this.visible2
+              this.visible1 = !this.visible1;
+              this.visible2 = !this.visible2
             }
           }
         }
       })
 
 
-      this.http.post('http://127.0.0.1:5050/company/getAllInformationOfAnWorker', queryObj)
+      this.http.post('http://localhost:5050/company/getAllInformationForStep2', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           this.visible1 = !this.visible1;

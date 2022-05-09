@@ -1,0 +1,293 @@
+<div class="col-12 grid-margin">
+
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <h4 class="card-title text-center">Matériaux & Matières premières</h4>
+                <form [formGroup]="form" (ngSubmit)="addToOffre()" class="form-sample">
+
+                    <ng-container *ngIf="visible1">
+
+                        <div class="form-group row">
+                            <div class="col">
+                                <label for="idOffre">Id-Offre</label>
+                                <div id="the-basics">
+                                    <input formControlName="idOffre" id="idOffre" name="idOffre" class="typeahead"
+                                        type="text" placeholder="Enter ID Offre like xxx-..." required autofocus>
+                                    <small *ngIf="exformFunction.idOffre.invalid && exformFunction.idOffre.touched"
+                                        class="text-danger" required autofocus> Id offre est obligatoire 
+                                        xxx-... !
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <label for="nomProduit">Nom produit/Service</label>
+                                <div id="the-basics">
+                                    <input formControlName="nomProduit" id="nomProduit" name="nomProduit" class="typeahead"
+                                        type="text" placeholder="Enter product name" required autofocus>
+                                    <small *ngIf="exformFunction.nomProduit.invalid && exformFunction.nomProduit.touched"
+                                        class="text-danger" required autofocus> Produit obligatoire !
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col">
+                                <label for="pDVHT">Prix Unitaire (HT)</label>
+                                <div id="the-basics">
+                                    <input formControlName="pDVHT" id="pDVHT" name="pDVHT" class="typeahead"
+                                        type="number" placeholder="Enter prix de vente unitaire..." required
+                                        autofocus>
+                                    <small *ngIf="exformFunction.pDVHT.invalid && exformFunction.pDVHT.touched"
+                                        class="text-danger" required autofocus> prix obligatoire !
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <label for="quantite">Quantité</label>
+                                <div id="bloodhound">
+                                    <input formControlName="quantite" id="quantite" name="quantite" class="typeahead"
+                                        type="number" placeholder="Enter quantite..." required autofocus>
+                                    <small *ngIf="exformFunction.quantite.invalid && exformFunction.quantite.touched"
+                                        class="text-danger" required autofocus> quantité obligatoire !
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col">
+                                <label for="ref">Référence </label>
+                                <div id="the-basics">
+                                    <input formControlName="ref" id="ref" name="ref" class="typeahead"
+                                        type="text" placeholder="Enter reference..." required
+                                        autofocus>
+                                    <small *ngIf="exformFunction.ref.invalid && exformFunction.ref.touched"
+                                        class="text-danger" required autofocus>  référence obligatoire !
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <label for="desc">Description</label>
+                                <div id="bloodhound">
+                                    <textarea formControlName="desc" id="desc" name="desc" class="typeahead"
+                                        type="number" placeholder="Enter description..." > </textarea>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <div class="col">
+                                <label>Marge</label>
+                                <br>
+                                <ng5-slider [(value)]="valueMarge" [options]="options"></ng5-slider>
+                            </div>
+                            <div class="col">
+                                <label>Remise</label>
+                                <br>
+                                <ng5-slider [(value)]="valueRemise" [options]="options"></ng5-slider>
+
+                                <div class="text-right">
+                                    <button type="button" (click)="addToOffre()"
+                                        class="btn btn-inverse-danger btn-fw">Valider
+                                        </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </ng-container>
+                </form>
+                <ng-container *ngIf="visible2">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label>Id-Offre</label>
+                            <div class="col-sm-9">
+                                <input #box (keyup.enter)="onEnter(box.value)" type="text" class="form-control"
+                                    class="typeahead" placeholder="Saisir id-Offre..." />
+                            </div>
+
+                        </div>
+                        <ng-container *ngIf="visible3">
+                            <div class="col-lg-12 grid-margin stretch-card">
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Référence Produit
+                                                </th>
+                                                <th>
+                                                    Nom Produit
+                                                </th>
+                                                <th>
+                                                    Prix Unitaire
+                                                </th>
+                                                <th>
+                                                    Quantité
+                                                </th>
+                                                <th>
+                                                    Marge %
+                                                </th>
+                                                <th>
+                                                    Remise % 
+                                                </th>
+                                                <th>
+                                                    T. après Marge 
+                                                </th>
+                                                <th>
+                                                    T. après Remise
+                                                </th>
+                                                <th>
+                                                    Totale HT
+                                                </th>
+                                                <th>
+                                                    Supprimer
+                                                </th>
+                                                <th>
+                                                    Modifier
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let item of productStep4;">
+                                                <td>
+                                                    {{item['referenceProduit']}} </td>
+                                                <td>
+                                                    {{item['nomProduit']}}
+                                                </td>
+                                                <td>
+                                                    {{item['prixUnitaire']}}
+                                                </td>
+                                                <td>
+                                                    {{item['quantity']}}
+                                                </td>
+                                                <td>
+                                                    {{item['marge']}}
+                                                </td>
+                                                <td>
+                                                    {{item['remise']}}
+                                                </td>
+                                                <td>
+                                                    {{item['totaleApresMarge']}}
+                                                </td>
+                                                <td>
+                                                    {{item['totaleApresRemise']}}
+                                                </td>
+                                                <td>
+                                                    {{item['totaleHT']}}
+                                                </td>
+                                                <td>
+                                                    <a (click)="deleteAnWorkerFromOffre(item['idOffre'],item['referenceProduit'])"><i
+                                                            class="mdi mdi-delete" style="font-size: 2em;"></i></a>
+                                                </td>
+                                                <td>
+                                                    <a (click)="editAnWorkerFromOffre(item['idOffre'],item['referenceProduit'],item['nomProduit'],item['prixUnitaire'],item['quantity'],item['marge'],item['remise'])"><i
+                                                            class="mdi mdi-table-edit me-5" data-bs-toggle="modal"
+                                                            data-bs-target="#exampleModal"
+                                                            style="font-size: 2em;"></i></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <h4 class="card-title centertext"><i>Mise à jour données</i></h4>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="card-body">
+                                                    <h4 class="card-title centertext">{{referenceProduit}}</h4>
+                                                    <div class="form-group row">
+                                                        <div class="col">
+                                                            <label>Id-Offre</label>
+                                                            <div id="the-basics">
+                                                                <input class="typeahead" type="text" value="{{idOffre}}" readonly>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <label>Nom Produit</label>
+                                                            <div id="bloodhound">
+                                                                <input [(ngModel)]="nomProduit" class="typeahead" type="text" value="nomProduit">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="form-group row">
+                                                        <div class="col">
+                                                            <label>Quantité Produit</label>
+                                                            <div id="the-basics">
+                                                                <input [(ngModel)]="quantity" class="typeahead" type="text" value="{{quantity}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <label>Prix Unitaire</label>
+                                                            <div id="bloodhound">
+                                                                <input [(ngModel)]="prixUnitaire" class="typeahead" type="number" value="{{prixUnitaire}}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col">
+                                                            <label>Marge</label>
+                                                            <div id="the-basics">
+                                                                <input [(ngModel)]="marge" class="typeahead" type="number" value="{{marge}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <label>Remise</label>
+                                                            <div id="bloodhound">
+                                                                <input [(ngModel)]="remise" class="typeahead" type="number" value="{{remise}}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <button (click)="updateInformationClientTODB()" type="button" class="btn btn-info container" data-bs-dismiss="modal">Mise à jour
+                                                        Infos</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </ng-container>
+                        <!--We will add button browser for the image of worker in this div-->
+                    </div>
+                </ng-container>
+
+            </div>
+        </div>
+    </div>
+    <br>
+    <button type="button" (click)="searchOnOffreBy()" class="btn btn-inverse-info mdi mdi-account-search"> Consulter
+        Offre</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    <button type="button" (click)="addWorkerInOffre()" class="btn btn-inverse-info mdi mdi mdi-plus"> Ajouter</button>
+</div>

@@ -37,8 +37,8 @@ export class SigninPageComponent implements OnInit {
     this.imageUserData = "../assets/img/default-avatar.jpg";
     localStorage.setItem('phoneNumberOfUser','0');
     Swal.fire(
-      'I am not a robot',
-      'Click x2 times in login?',
+      'Je suis pas un robot',
+      'Click x2 times to login?',
       'question',
     )
   }
@@ -75,8 +75,8 @@ export class SigninPageComponent implements OnInit {
     if (!this.form.valid) {
       Swal.fire({
         icon: 'error',
-        title: 'Oops...',
-        text: 'Check your input information',
+        // title: 'Oops...',
+        text: 'Vérifier les données saisies',
       })
     }
     // console.log(dataSend)
@@ -85,7 +85,7 @@ export class SigninPageComponent implements OnInit {
       faceRecogn
     }
 
-    this.http.post('http://127.0.0.1:5050/client/signIn', queryObj)
+    this.http.post('http://localhost:5050/client/signIn', queryObj)
       .subscribe(res => {
         // console.log(res)
         for ([key, val] of Object.entries(res)) {
@@ -97,8 +97,8 @@ export class SigninPageComponent implements OnInit {
             if (val == 0) {
               Swal.fire({
                 icon: 'error',
-                title: 'Oops...',
-                text: 'There is not an account has this email try again please',
+                // title: 'Oops...',
+                text: 'pas de compte associé à cet email',
               })
               this.myModal = "";
             }
@@ -132,7 +132,7 @@ export class SigninPageComponent implements OnInit {
       phoneNumberToAnCodeLocal
     }
     // console.log(phoneNumberToAnCodeLocal)
-    this.http.post('http://127.0.0.1:5050/client/sendAnotherCodePhone', queryObj)
+    this.http.post('http://localhost:5050/client/sendAnotherCodePhone', queryObj)
     .subscribe(res => {
     })
   }
@@ -153,11 +153,11 @@ export class SigninPageComponent implements OnInit {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: "It's over 60 seconds",
+        text: "60 secondes dépassées",
       })
     }
     else{
-      this.http.post('http://127.0.0.1:5050/client/checkCodeNotif', queryObj)
+      this.http.post('http://localhost:5050/client/checkCodeNotif', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           if (key == "variableCodeCheck") {
@@ -165,23 +165,23 @@ export class SigninPageComponent implements OnInit {
               Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: "It's a wrong code check it!",
+                text: "Code erroné!",
               })
             }
             else{
                 Swal.fire({
                   position: 'top-end',
                   icon: 'success',
-                  title: 'Welcome on MiCalo!!',
+                  title: 'Vous êtes bien connecté!!',
                   showConfirmButton: false,
                   timer: 1500
                 })
                 this.myModal = "";
-                this.http.post('http://127.0.0.1:5050/client/getInformationClient', queryObj)
+                this.http.post('http://localhost:5050/client/getInformationClient', queryObj)
                 .subscribe(res => {
                   for ([key1, val1] of Object.entries(res)) {
                     if (key1 == "resutFunction") {
-                      // console.log(val1);
+                      console.log(val1);
                       this.dataInformation = val1;
                       this.router.navigateByUrl('/LayoutPage', { state: {dataInformation: this.dataInformation} });
                     }

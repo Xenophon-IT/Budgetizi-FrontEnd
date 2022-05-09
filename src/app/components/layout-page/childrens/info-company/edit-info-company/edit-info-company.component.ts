@@ -27,9 +27,10 @@ export class EditInfoCompanyComponent implements OnInit {
   webSite: any="";
   emailUserCompany: any="";
   city: any="";
+  addressLocal: any;
   zipCode: any="";
   countryUser: any="";
-  logoCompany: any = "data:image/jpeg;base64,";
+  logoCompany: any = "";
 
   constructor(private http: HttpClient, private router: Router) {
 
@@ -49,23 +50,25 @@ export class EditInfoCompanyComponent implements OnInit {
     const queryObj={
       phoneNumber
     }
-    this.http.post('http://127.0.0.1:5050/company/getInformationFromCompanyDB', queryObj)
+    this.http.post('http://localhost:5050/company/getInformationFromCompanyDB', queryObj)
       .subscribe(res => {
         for ([key1, val1] of Object.entries(res)) {
           if (key1 == "resutFunction") {
             var informationData = val1;
+            console.log(informationData)
             this.nameCompany = informationData[1];
             this.currency = informationData[5];
             this.countryUser = informationData[2];
             this.telePhone = informationData[8];
             this.cellNumber = informationData[9];
-            this.webSite = informationData[16];
-            this.lastNameProfile = informationData[18];
-            this.firstNameProfile = informationData[17];
+            this.webSite = informationData[17];
+            this.lastNameProfile = informationData[19];
+            this.firstNameProfile = informationData[18];
             this.emailUserCompany = informationData[11]
             this.addressCompany = informationData[12];
             this.taxRegNum = informationData[10];
             this.city = informationData[13];
+            this.addressLocal = informationData[15]
             this.zipCode = informationData[14];
             this.logoCompany = informationData[7]
           }
@@ -119,6 +122,7 @@ export class EditInfoCompanyComponent implements OnInit {
     var lastNameProfileSend = this.lastNameProfile;
     var addressCompanySend = this.addressCompany;
     var citySend = this.city;
+    var addressLocal= this.addressLocal
     var zipCodeSend = this.zipCode;
     var logoCompanySend = this.logoCompany;
     var taxRegNumSend = this.taxRegNum;
@@ -143,12 +147,13 @@ export class EditInfoCompanyComponent implements OnInit {
       lastNameProfileSend,
       emailUserCompanySend,
       citySend,
+      addressLocal,
       zipCodeSend,
       logoCompanySend,
       taxRegNumSend,
       addressCompanySend
     }
-    this.http.post('http://127.0.0.1:5050/company/EditInformationOfCompany', queryObj)
+    this.http.post('http://localhost:5050/company/EditInformationOfCompany', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           if (key == "resutFunction") {

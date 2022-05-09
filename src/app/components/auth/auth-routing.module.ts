@@ -19,6 +19,11 @@ import { InfoClientComponent } from '../layout-page/childrens/info-client/info-c
 // Datepicker module
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { AddProductIntoOffreComponent } from '../layout-page/childrens/step4-create-offre-product/add-product-into-offre/add-product-into-offre.component';
+import { CalculatePhase4OfferComponent } from '../layout-page/childrens/step4-create-offre-product/calculate-phase4-offer/calculate-phase4-offer.component';
+import { ArchivesOffresComponent } from '../layout-page/childrens/archives-offres/archives-offres.component';
+import { PrintOffresComponent } from '../layout-page/childrens/print-offres/print-offres.component';
+import { SendToClientComponent } from '../layout-page/childrens/send-to-client/send-to-client.component';
 
 const routes: Routes = [
   {component: HomePageComponent, path: 'PageHome'},
@@ -36,7 +41,12 @@ const routes: Routes = [
     {component:MonitoringOfWorksComponent, path:'MonitoringOfWorks'},
     {component:CalculatePhase3OffreComponent, path:'CalculatePhase3Offre'},
     {component:OffreFinaleComponent, path:'OffreFinale'},
-    {component:InfoClientComponent, path:'InfoClient'}
+    {component:InfoClientComponent, path:'InfoClient'},
+    {component:AddProductIntoOffreComponent, path:'AddProductIntoOffre'},
+    {component:CalculatePhase4OfferComponent, path:'CalculatePhase4Offer'},
+    {component:ArchivesOffresComponent, path:'ArchivesOffres'},
+    {component:PrintOffresComponent, path:'PrintOffres'},
+    {component:SendToClientComponent, path:'SendToClient'}
   ]},
 
 ];

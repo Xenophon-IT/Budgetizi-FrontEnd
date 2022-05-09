@@ -54,28 +54,28 @@ export class CalculatePhase3OffreComponent implements OnInit {
       phoneNumber
     }
 
-    this.http.post('http://127.0.0.1:5050/company/calculPhase3Offre', queryObj)
+    this.http.post('http://localhost:5050/company/calculPhase3Offre', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           if (key == "resutFunction") {
             //console.log(val);
             if (val.length == 0) {
-              Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: "You don't have this offre try again !",
-              })
+              // Swal.fire({
+              //   icon: 'error',
+              //   title: 'Oops...',
+              //   text: "You don't have this offre try again !",
+              // })
             }
             else {
               this.informationGlobOff = val;
-              // this.visible1 = !this.visible1;
-              // this.visible2 = !this.visible2
+              this.visible1 = !this.visible1;
+              this.visible2 = !this.visible2
             }
           }
         }
       })
 
-      this.http.post('http://127.0.0.1:5050/company/getAllInformationOfAnWorker', queryObj)
+      this.http.post('http://localhost:5050/company/getAllInformationForStep3', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           this.visible1 = !this.visible1;

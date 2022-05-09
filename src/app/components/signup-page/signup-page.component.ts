@@ -64,7 +64,7 @@ export class SignupPageComponent implements OnInit {
     }
     console.log(queryObj);
     if(this.nextPage == 0){
-      this.http.post('http://127.0.0.1:5050/client/signupClient', queryObj)
+      this.http.post('http://localhost:5050/client/signupClient', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           if(key == "resultSignUp"){
@@ -88,7 +88,7 @@ export class SignupPageComponent implements OnInit {
     }
     else if(this.nextPage == 1){
       // console.log(dataSend)
-      this.http.post('http://127.0.0.1:5050/company/signupCompany', queryObj)
+      this.http.post('http://localhost:5050/company/signupCompany', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) { 
           if(key == "resultSignUpCompany"){

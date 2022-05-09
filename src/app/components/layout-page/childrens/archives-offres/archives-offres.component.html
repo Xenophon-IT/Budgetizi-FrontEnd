@@ -1,0 +1,137 @@
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title centertext">Historique Offres</h4>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id-Offre</th>
+                        <th>Date de Création</th>
+                        <th>Nom Négociateur</th>
+                        <th>Proposition à Négocier</th>
+                        <th>Marge Nette</th>
+                        <th>Remise</th>
+                        <th>Status</th>
+                        <th>Modifier</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of allOffre">
+                        <td>{{item['idOffre']}}</td>
+                        <td>{{item['dateCreation']}}</td>
+                        <td>{{item['nomNegociateur']}}</td>
+                        <td>{{item['globalPropositionStPrWR']}}</td>
+                        <td>{{item['globalMargeNete']}}</td>
+                        <td>{{item['remisePercent']}} %</td>
+                        <td><label class="badge badge-{{item['status']}}">{{item['description']}}</label></td>
+                        <td>
+                            <a (click)="editAnOffre(item['idOffre'])"><i class="mdi mdi-table-edit me-5"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                    style="font-size: 2em;"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Modal -->
+            <form [formGroup]="form" (ngSubmit)="updateInformationOffreNegociation()" class="form-sample">
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <!-- <div class="modal-header">
+                      <h5 class="modal-title text-danger" id="exampleModalLabel">Login
+                          Form</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal"
+                          aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                      
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-warning"
+                          data-bs-dismiss="modal">Close</button>
+                  </div> -->
+                            <div class="modal-header">
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <h4 class="card-title centertext"><i>Réduire la proposition d'offre</i></h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title centertext">{{idOffreSendGlobal}}</h4>
+                                <div class="form-group row">
+                                    <div class="col">
+                                        <label>Id-Offre</label>
+                                        <div id="the-basics">
+                                            <input class="typeahead" type="text" value="{{idOffreSendGlobal}}" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <label>Nom Négociateur</label>
+                                        <div id="bloodhound">
+                                            <input [(ngModel)]="nomNegociateur" class="typeahead" type="text"
+                                                value="{{nomNegociateur}}">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row">
+                                    <div class="col">
+                                        <label>Proposition</label>
+                                        <div id="the-basics">
+                                            <input class="typeahead" type="number" value="{{proposition}}" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <label>Marge Nette</label>
+                                        <div id="bloodhound">
+                                            <input class="typeahead" type="number" value="{{margeNette}}" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col">
+                                        <label>Remise %</label>
+                                        <div id="the-basics">
+                                            <!-- <input [(ngModel)]="remise" class="typeahead" type="number"
+                                                value="{{remise}}"> -->
+                                                <input [(ngModel)]="remise" formControlName="remiseInput" id="remiseInput" name="remiseInput" class="typeahead" value="{{remise}}"
+                                                 type="number" required autofocus>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <label>Status</label>
+                                        <div id="bloodhound">
+                                            <select formControlName="state" name="state" id="state"
+                                                (change)="chooseOption($event)" class="form-control" required autofocus>
+                                                <option selected="selected" disabled>Changer Status</option>
+                                                <option>En Négociation</option>
+                                                <option>Completed</option>
+                                                <option>Perdre</option>
+                                            </select>
+                                            <small *ngIf="exformFunction.state.invalid && exformFunction.state.touched"
+                                                class="text-danger" required autofocus> Choisir un status est
+                                                obligatoire
+                                            </small>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <button (click)="updateInformationOffreNegociation()" type="button"
+                                    class="btn btn-info container" data-bs-dismiss="modal">Modifier
+                                    Informations</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

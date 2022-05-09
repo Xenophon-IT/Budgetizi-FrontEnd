@@ -29,6 +29,11 @@ export class OffreFinaleComponent implements OnInit {
   getAllInformationForStep3Worker: any;
   getAllInformationForStep3: any;
   getAllInformationForFinalOffre: any;
+  getAllProducts: any;
+  globalMargeNete: any;
+  totaleProposition: any;
+  idOffreGlobale: any;
+  sommeOFProducts: any
 
   constructor(private http: HttpClient) {
 
@@ -37,23 +42,16 @@ export class OffreFinaleComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addWorkerInOffre() {
-    this.visible1 = !this.visible1
-  }
-
-  searchOnOffreBy() {
-    this.visible2 = !this.visible2
-
-  }
   onEnter(value: string) {
     var key, val;
     this.value = value;
     //console.log(this.value);
     var idOffreSend = value;
-    var key2,val2;
-    var phoneUserNumber:any;
+    this.idOffreGlobale = value
+    var key2, val2;
+    var phoneUserNumber: any;
     var decoded;
-    var phoneNumber;    
+    var phoneNumber;
     phoneUserNumber = localStorage.getItem('phoneNumberOfUser');
     decoded = jwtDecode<JwtPayload>(phoneUserNumber)
     for ([key2, val2] of Object.entries(decoded)) {
@@ -66,7 +64,7 @@ export class OffreFinaleComponent implements OnInit {
       phoneNumber
     }
 
-    this.http.post('http://127.0.0.1:5050/company/getAllInformationOfAnWorker', queryObj)
+    this.http.post('http://localhost:5050/company/getAllInformationOfAnWorker', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           this.visible1 = !this.visible1;
@@ -111,4 +109,100 @@ export class OffreFinaleComponent implements OnInit {
   printWindow() {
     window.print()
   }
+  listOfProducts(event: any) {
+    var idOffreSend = this.idOffreGlobale;
+    var key2, val2;
+    var phoneUserNumber: any;
+    var decoded;
+    var phoneNumber;
+    phoneUserNumber = localStorage.getItem('phoneNumberOfUser');
+    decoded = jwtDecode<JwtPayload>(phoneUserNumber)
+    for ([key2, val2] of Object.entries(decoded)) {
+      phoneNumber = val2
+    }
+
+    console.log("Phone Number after decoding")
+    const queryObj = {
+      idOffreSend,
+      phoneNumber
+    }
+    let key, val;
+    console.log(event.target.checked);
+    if (event.target.checked == true) {
+      this.visible2 = !this.visible2
+      this.http.post('http://localhost:5050/company/getAllInformationForStep4', queryObj)
+        .subscribe(res => {
+          for ([key, val] of Object.entries(res)) {
+            this.visible1 = !this.visible1;
+            if (key == "resutFunction7") {
+              console.log(val)
+              this.getAllProducts = val
+            }
+            if (key == "resutFunction8") {
+              console.log("sssssssssssssssssssssss")
+              console.log(val)
+              this.globalMargeNete = val[1]
+              this.totaleProposition = val[0]
+              this.sommeOFProducts = val[3]
+            }
+
+          }
+        })
+    }
+    else {
+      this.visible2 = !this.visible2
+    }
+  }
+
+  addNegotiation() {
+    Swal.fire({
+      title: 'Nom Négociateur',
+      input: 'text',
+      inputAttributes: {
+        autocapitalize: 'off'
+      },
+      confirmButtonText: 'Envoyer',
+      showLoaderOnConfirm: true,
+      preConfirm: (nameNegociateur) => {
+        console.log(nameNegociateur)
+        var key2, val2;
+        var key, val;
+        var phoneUserNumber: any;
+        var decoded;
+        var phoneNumber;
+        var idOffreSend = this.idOffreGlobale;
+        phoneUserNumber = localStorage.getItem('phoneNumberOfUser');
+        decoded = jwtDecode<JwtPayload>(phoneUserNumber)
+        for ([key2, val2] of Object.entries(decoded)) {
+          phoneNumber = val2
+        }
+        console.log("Phone Number after decoding")
+        console.log(phoneNumber)
+        const queryObj = {
+          phoneNumber,
+          idOffreSend,
+          nameNegociateur
+        }
+
+        this.http.post('http://localhost:5050/company/addNegociateur', queryObj)
+          .subscribe(res => {
+            for ([key, val] of Object.entries(res)) {
+              if (key == "resutFunction") {
+                if(val==1){
+                  Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Cette offre est en train de négocier',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+                }
+              }
+            }
+          })
+      }
+    })
+  }
+
+
 }

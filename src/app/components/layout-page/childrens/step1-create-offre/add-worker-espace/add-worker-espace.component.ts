@@ -108,7 +108,7 @@ export class AddWorkerEspaceComponent implements OnInit {
       imageProfileForUserSend,
       dataSend
     }
-    this.http.post('http://127.0.0.1:5050/company/addInTableSalary', queryObj)
+    this.http.post('http://localhost:5050/company/addInTableSalary', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           if (key == "resutFunction") {
@@ -147,7 +147,7 @@ export class AddWorkerEspaceComponent implements OnInit {
       })
     }
 
-    this.http.post('http://127.0.0.1:5050/company/AddWorkerInDB', queryObj)
+    this.http.post('http://localhost:5050/company/AddWorkerInDB', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           if (key == "resutFunction") {
@@ -163,6 +163,7 @@ export class AddWorkerEspaceComponent implements OnInit {
               this.getAllWorker();
               //this.visible2 = !this.visible2;
               this.form.reset();
+              this.imageProfileForUser="UPLOAD IMAGE WORKER"
             }
             else {
               Swal.fire({
@@ -194,13 +195,13 @@ export class AddWorkerEspaceComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.http.post('http://127.0.0.1:5050/company/deleteWorkerFromDB', queryObj)
+        this.http.post('http://localhost:5050/company/deleteWorkerFromDB', queryObj)
           .subscribe(res => {
             for ([key, val] of Object.entries(res)) {
               if (key == "resutFunction") {
                 if (val == 1) {
                   Swal.fire(
-                    'Supprimé!',
+                    'Deleted!',
                     'La ressource a été supprimée.',
                     'success'
                   )
@@ -241,13 +242,14 @@ export class AddWorkerEspaceComponent implements OnInit {
       fullNameWorkerSend,
       idWorkerSend
     }
-    this.http.post('http://127.0.0.1:5050/company/updateInfoWorkerCompany', queryObj)
+    this.http.post('http://localhost:5050/company/updateInfoWorkerCompany', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           if (key == "resutFunction") {
             console.log(val)
             this.router.navigateByUrl('/LayoutPage/AddWorkerEspace', {});
             this.getAllWorker()
+            this.userProfileImage=""
           }
         }
       })
@@ -270,7 +272,7 @@ export class AddWorkerEspaceComponent implements OnInit {
     const queryObj={
       phoneNumber
     }
-    this.http.post('http://127.0.0.1:5050/company/GetAllWorkerCompany', queryObj)
+    this.http.post('http://localhost:5050/company/GetAllWorkerCompany', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           if (key == "resutFunction") {
