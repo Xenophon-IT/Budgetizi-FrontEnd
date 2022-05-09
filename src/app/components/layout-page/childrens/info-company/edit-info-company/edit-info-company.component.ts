@@ -50,7 +50,7 @@ export class EditInfoCompanyComponent implements OnInit {
     const queryObj={
       phoneNumber
     }
-    this.http.post('http://20.127.19.239/company/getInformationFromCompanyDB', queryObj)
+    this.http.post('http://localhost:5050/company/getInformationFromCompanyDB', queryObj)
       .subscribe(res => {
         for ([key1, val1] of Object.entries(res)) {
           if (key1 == "resutFunction") {
@@ -153,7 +153,7 @@ export class EditInfoCompanyComponent implements OnInit {
       taxRegNumSend,
       addressCompanySend
     }
-    this.http.post('http://20.127.19.239/company/EditInformationOfCompany', queryObj)
+    this.http.post('http://localhost:5050/company/EditInformationOfCompany', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           if (key == "resutFunction") {

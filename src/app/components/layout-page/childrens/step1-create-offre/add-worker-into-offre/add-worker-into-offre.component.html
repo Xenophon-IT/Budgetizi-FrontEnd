@@ -3,7 +3,7 @@
     <div class="card">
         <div class="card-body">
             <div class="row">
-                <h4 class="card-title text-center">Etape 1</h4>
+                <h4 class="card-title text-center">Passage des Contrats</h4>
                 <form [formGroup]="form" (ngSubmit)="addToOffre()" class="form-sample">
 
                     <ng-container *ngIf="visible1">
@@ -22,7 +22,7 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <label for="lfN">Nom Complet</label>
+                                <label for="lfN">Nom de la Ressource</label>
                                 <div id="bloodhound">
                                     <select formControlName="lfN" name="lfN" id="lfN"
                                         class="form-control" required autofocus>
@@ -98,7 +98,7 @@
                                                     Ressource
                                                 </th>
                                                 <th>
-                                                    Full Name
+                                                    Nom & Prénom
                                                 </th>
                                                 <th>
                                                     N°Heures au Siège
@@ -188,7 +188,7 @@
                                                     &nbsp;&nbsp;&nbsp;&nbsp;
                                                     &nbsp;&nbsp;&nbsp;&nbsp;
                                                     &nbsp;&nbsp;&nbsp;&nbsp;
-                                                    <h4 class="card-title centertext"><i>Modifier Détails Ressource</i></h4>
+                                                    <h4 class="card-title centertext"><i>Modifier Informations Ressource</i></h4>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
@@ -212,7 +212,7 @@
 
                                                     <div class="form-group row">
                                                         <div class="col">
-                                                            <label>Nb° Heffectués au Siège</label>
+                                                            <label>Nb° H effectués au Siège</label>
                                                             <div id="the-basics">
                                                                 <input [(ngModel)]="nbWorkOnCompany" class="typeahead" type="number" value="{{nbWorkOnCompany}}">
                                                             </div>
@@ -242,7 +242,7 @@
         </div>
     </div>
     <br>
-    <button type="button" (click)="searchOnOffreBy()" class="btn btn-inverse-info mdi mdi-account-search"> Search an
+    <button type="button" (click)="searchOnOffreBy()" class="btn btn-inverse-info mdi mdi-account-search"> Etablir
         Offre</button>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -260,6 +260,6 @@
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-    <button type="button" (click)="addWorkerInOffre()" class="btn btn-inverse-info mdi mdi mdi-plus"> Add
-        worker</button>
+    <button type="button" (click)="addWorkerInOffre()" class="btn btn-inverse-info mdi mdi mdi-plus">Valider
+        </button>
 </div>

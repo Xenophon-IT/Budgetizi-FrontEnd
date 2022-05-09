@@ -88,12 +88,12 @@ export class SendToClientComponent implements OnInit {
       phoneNumber
     }
 
-    this.http.post('http://20.127.19.239/company/checkCompleteOffre', queryObj)
+    this.http.post('http://localhost:5050/company/checkCompleteOffre', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           if (key == "resutFunction") {
             if (val == 1) {
-              this.http.post('http://20.127.19.239/company/getAllInformationOfAnWorker', queryObj)
+              this.http.post('http://localhost:5050/company/getAllInformationOfAnWorker', queryObj)
                 .subscribe(res => {
                   for ([key, val] of Object.entries(res)) {
                     this.visible1 = !this.visible1;
@@ -106,7 +106,7 @@ export class SendToClientComponent implements OnInit {
               Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: "You don't have this offre try again !",
+                text: "Aucune offre ne correspond à votre recherche !",
               })
             }
           }
@@ -120,7 +120,7 @@ export class SendToClientComponent implements OnInit {
       phoneNumber
     }
 
-    this.http.post('http://20.127.19.239/company/getAllNesscaryInformation', queryObj)
+    this.http.post('http://localhost:5050/company/getAllNesscaryInformation', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           if (key == "resutFunctionOFCompanies") {

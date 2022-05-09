@@ -100,7 +100,7 @@ export class AddProductIntoOffreComponent implements OnInit {
       phoneNumber
     }
     // console.log(valueModi)
-    this.http.post('http://20.127.19.239/company/getOffreStep4ById', queryObj)
+    this.http.post('http://localhost:5050/company/getOffreStep4ById', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           console.log("Test 2022")
@@ -156,7 +156,7 @@ export class AddProductIntoOffreComponent implements OnInit {
         valueSendRemise,
         phoneNumber
       }
-      this.http.post('http://20.127.19.239/company/Step4Offre', queryObj)
+      this.http.post('http://localhost:5050/company/Step4Offre', queryObj)
         .subscribe(res => {
           for ([key, val] of Object.entries(res)) {
             if (key == "resutFunction") {
@@ -211,7 +211,7 @@ export class AddProductIntoOffreComponent implements OnInit {
       marge,
       remise
     }
-    this.http.post('http://20.127.19.239/company/updateInformationOfStep4', queryObj)
+    this.http.post('http://localhost:5050/company/updateInformationOfStep4', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           this.visible3 = !this.visible3
@@ -240,7 +240,7 @@ export class AddProductIntoOffreComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.http.post('http://20.127.19.239/company/deleteAnWorkerFromOffreStep4', queryObj)
+        this.http.post('http://localhost:5050/company/deleteAnWorkerFromOffreStep4', queryObj)
           .subscribe(res => {
             for ([key, val] of Object.entries(res)) {
               // this.visible3 = !this.visible3

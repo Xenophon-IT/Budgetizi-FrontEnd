@@ -75,12 +75,12 @@ export class PrintOffresComponent{
       phoneNumber
     }
 
-    this.http.post('http://20.127.19.239/company/checkCompleteOffre', queryObj)
+    this.http.post('http://localhost:5050/company/checkCompleteOffre', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           if (key == "resutFunction") {
             if (val == 1) {
-              this.http.post('http://20.127.19.239/company/getAllInformationOfAnWorker', queryObj)
+              this.http.post('http://localhost:5050/company/getAllInformationOfAnWorker', queryObj)
                 .subscribe(res => {
                   for ([key, val] of Object.entries(res)) {
                     this.visible1 = !this.visible1;
@@ -128,7 +128,7 @@ export class PrintOffresComponent{
               Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: "You don't have this offre try again !",
+                text: "l'ID ne correspond à aucune offre !",
               })
             }
           }
@@ -158,7 +158,7 @@ export class PrintOffresComponent{
       phoneNumber
     }
     let key, val;
-    this.http.post('http://20.127.19.239/company/getAllInformationForStep4', queryObj)
+    this.http.post('http://localhost:5050/company/getAllInformationForStep4', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           if (key == "resutFunction7") {

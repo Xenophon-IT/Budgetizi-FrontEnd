@@ -1,7 +1,7 @@
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title text-center">Liste des Ressources </h4>
+            <h4 class="card-title text-center">Détails de l'Estimation </h4>
             <div class="form-group row">
                 <label>Id-Offre</label>
                 <div class="col-sm-9">
@@ -14,34 +14,38 @@
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
+                            
                             <tr class="centertext">
                                 <th rowspan="2"></th>
                                 <!-- <th rowspan="2">Désignation</th> -->
                                 <!-- <th rowspan="2">Worker Profile</th> -->
-                                <th rowspan="2">Full Name</th>
-                                <th rowspan="2">Unit</th>
-                                <th colspan="4">Worker Price</th>
+                                <th rowspan="2">Nom Ressource</th>
+                                <th rowspan="2">Unité</th>
+                                <th colspan="4">Proposition</th>
                                 <th rowspan="2">FG%</th>
-                                <th rowspan="2">Costs DT</th>
-                                <th colspan="3">Company Marge</th>
+                                <th rowspan="2">Coûts/DT</th>
+                                <th colspan="3">Marge</th>
                             </tr>
                             <tr class="centertext">
-                                <th>Q. Company</th>
-                                <th>Q. Site</th>
+                                <th>Nbre H.Siège</th>
+                                <th>Nbre H.Site</th>
                                 <th>T. Proposition</th>
                                 <th>T. Revient</th>
                                 <th>Marge Brute</th>
                                 <th>Marge Nette</th>
                                 <th>Marge %</th>
                             </tr>
-
+                            <tr >
+                                <th>Assistance M.O</th>
+                            </tr>
                         </thead>
 
                         <tbody>
                             <tr *ngFor="let item of getAllInformation">
                                 <!-- <td>Step1</td> -->
+                                
                                 <td class="py-1">
-                                    <img src="{{item['profileWork']}}" alt="image" />
+                                    <!-- <img src="{{item['profileWork']}}" alt="image" /> -->
                                 </td>
                                 <td>{{item['fullName']}}</td>
                                 <td>Hour</td>
@@ -56,10 +60,10 @@
                                 <td>{{item['tMargeNetPC']}} %</td>
                             </tr>
                             <tr *ngFor="let item of getAllInformationForStep1">
-                                <th>S/Totale1</th>
+                                <th>S/Total 1</th>
                                 <!-- <td></td> -->
                                 <td></td>
-                                <td>T. Hour</td>
+                                <td>T. Heures</td>
                                 <td>{{item['totaleQtyWork']}}</td>
                                 <td></td>
                                 <td>{{item['totaleProposition']}}</td>
@@ -70,13 +74,16 @@
                                 <td>{{item['totaleMargeNet']}}</td>
                                 <td>{{item['totaleMargeNetPC']}} %</td>
                             </tr>
+                            <tr >
+                                <th>Approbation Dossier d'exécution</th>
+                            </tr>
                             <tr *ngFor="let item of getAllInformationForStep2Worker">
                                 <!-- <td>Step2</td> -->
                                 <td class="py-1">
-                                    <img src="{{item['profileWork']}}" alt="image" />
+                                    <!-- <img src="{{item['profileWork']}}" alt="image" /> -->
                                 </td>
                                 <td>{{item['fullName']}}</td>
-                                <td>Hour-Day</td>
+                                <td>N° Heures-Jours</td>
                                 <td>{{item['hoursWorkCompany']}}</td>
                                 <td>{{item['hoursWorkOutCompany']}}</td>
                                 <td>{{item['tPropositionByWorker']}}</td>
@@ -87,11 +94,13 @@
                                 <td>{{item['tMargeNet']}}</td>
                                 <td>{{item['tMargeNetPC']}} %</td>
                             </tr>
+
                             <tr *ngFor="let item of getAllInformationForStep2">
-                                <th>S/Totale2</th>
+                                <th>S/Total 2</th>
                                 <!-- <td></td> -->
                                 <td></td>
-                                <td>T. Hours-Days</td>
+                             
+                                <td>T. Heures-Jours</td>
                                 <td>{{item['totaleQtyWork']}}</td>
                                 <td></td>
                                 <td>{{item['totaleProposition']}}</td>
@@ -102,10 +111,13 @@
                                 <td>{{item['totaleMargeNet']}}</td>
                                 <td>{{item['totaleMargeNetPC']}} %</td>
                             </tr>
+                            <tr >
+                                <th>Suivi travaux</th>
+                            </tr>
                             <tr *ngFor="let item of getAllInformationForStep3Worker">
                                 <!-- <td>Step3</td> -->
                                 <td class="py-1">
-                                    <img src="{{item['profileWork']}}" alt="image" />
+                                    <!-- <img src="{{item['profileWork']}}" alt="image" /> -->
                                 </td>
                                 <td>{{item['fullName']}}</td>
                                 <td>Hour-Day</td>
@@ -120,10 +132,10 @@
                                 <td>{{item['tMargeNetPC']}} %</td>
                             </tr>
                             <tr *ngFor="let item of getAllInformationForStep3">
-                                <th>S/Totale3</th>
+                                <th>S/Total 3</th>
                                 <!-- <td></td> -->
                                 <td></td>
-                                <td>T. Hours-Days</td>
+                                <td>T. Heures-Jours</td>
                                 <td>{{item['totaleQtyWork']}}</td>
                                 <td></td>
                                 <td>{{item['totaleProposition']}}</td>
@@ -135,15 +147,15 @@
                                 <td>{{item['totaleMargeNetPC']}} %</td>
                             </tr>
                             <tr>
-                                <th>Total S1/2/3</th>
+                                <th>Total Général</th>
                                 <!-- <td></td> -->
                                 <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
                                 <th>Proposition</th>
-                                <th>Revient</th>
-                                <th>Cost+FG</th>
+                                <th>Prix de Revient</th>
+                                <th>Coût+FG</th>
                                 <td></td>
                                 <th>Marge Brute</th>
                                 <th>Marge Nette</th>
@@ -179,7 +191,7 @@
                                     <thead>
                                         <tr>
                                             <th>
-                                                Reference Produit
+                                                Référence Produit
                                             </th>
                                             <th>
                                                 Nom Produit
@@ -239,7 +251,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th>S/Totale4</th>
+                                            <th>S/Total 4</th>
                                             <th></th>
                                             <th></th>
                                             <th></th>
@@ -250,12 +262,12 @@
                                             <th>{{sommeOFProducts}} DT</th>
                                         </tr>
                                         <tr>
-                                            <th>Grand Total</th>
+                                            <th>Total Proposition</th>
                                             <td></td>
                                             <td></td>
                                             <th>Proposition</th>
                                             <th>Revient</th>
-                                            <th>Cost+FG</th>
+                                            <th>Coût+FG</th>
                                             <th>Marge Brute</th>
                                             <th>Marge Nette</th>
                                             <th>Marge Finale</th>
@@ -278,7 +290,7 @@
                                 <div class="col">
                                     <div class="text-right">
                                         <button type="button" (click)="addNegotiation()"
-                                            class="btn btn-inverse-info btn-fw">Add in Négociation</button>
+                                            class="btn btn-inverse-info btn-fw">Mettre en Négociation</button>
                                     </div>
                                 </div>
                                 

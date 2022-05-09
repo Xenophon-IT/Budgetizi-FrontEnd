@@ -3,7 +3,7 @@
     <div class="card">
         <div class="card-body">
             <div class="row">
-                <h4 class="card-title text-center">Etape 4</h4>
+                <h4 class="card-title text-center">Matériaux & Matières premières</h4>
                 <form [formGroup]="form" (ngSubmit)="addToOffre()" class="form-sample">
 
                     <ng-container *ngIf="visible1">
@@ -15,18 +15,18 @@
                                     <input formControlName="idOffre" id="idOffre" name="idOffre" class="typeahead"
                                         type="text" placeholder="Enter ID Offre like xxx-..." required autofocus>
                                     <small *ngIf="exformFunction.idOffre.invalid && exformFunction.idOffre.touched"
-                                        class="text-danger" required autofocus> The Id offre is Required and should be
+                                        class="text-danger" required autofocus> Id offre est obligatoire 
                                         xxx-... !
                                     </small>
                                 </div>
                             </div>
                             <div class="col">
-                                <label for="nomProduit">Nom produit</label>
+                                <label for="nomProduit">Nom produit/Service</label>
                                 <div id="the-basics">
                                     <input formControlName="nomProduit" id="nomProduit" name="nomProduit" class="typeahead"
                                         type="text" placeholder="Enter product name" required autofocus>
                                     <small *ngIf="exformFunction.nomProduit.invalid && exformFunction.nomProduit.touched"
-                                        class="text-danger" required autofocus> The product name is required !
+                                        class="text-danger" required autofocus> Produit obligatoire !
                                     </small>
                                 </div>
                             </div>
@@ -40,7 +40,7 @@
                                         type="number" placeholder="Enter prix de vente unitaire..." required
                                         autofocus>
                                     <small *ngIf="exformFunction.pDVHT.invalid && exformFunction.pDVHT.touched"
-                                        class="text-danger" required autofocus> The price of the product is required !
+                                        class="text-danger" required autofocus> prix obligatoire !
                                     </small>
                                 </div>
                             </div>
@@ -50,7 +50,7 @@
                                     <input formControlName="quantite" id="quantite" name="quantite" class="typeahead"
                                         type="number" placeholder="Enter quantite..." required autofocus>
                                     <small *ngIf="exformFunction.quantite.invalid && exformFunction.quantite.touched"
-                                        class="text-danger" required autofocus> The quantite of the product is required !
+                                        class="text-danger" required autofocus> quantité obligatoire !
                                     </small>
                                 </div>
                             </div>
@@ -58,13 +58,13 @@
 
                         <div class="form-group row">
                             <div class="col">
-                                <label for="ref">Réference </label>
+                                <label for="ref">Référence </label>
                                 <div id="the-basics">
                                     <input formControlName="ref" id="ref" name="ref" class="typeahead"
                                         type="text" placeholder="Enter reference..." required
                                         autofocus>
                                     <small *ngIf="exformFunction.ref.invalid && exformFunction.ref.touched"
-                                        class="text-danger" required autofocus> The reference of the product is required !
+                                        class="text-danger" required autofocus>  référence obligatoire !
                                     </small>
                                 </div>
                             </div>
@@ -91,8 +91,8 @@
 
                                 <div class="text-right">
                                     <button type="button" (click)="addToOffre()"
-                                        class="btn btn-inverse-danger btn-fw">Add
-                                        to offre</button>
+                                        class="btn btn-inverse-danger btn-fw">Valider
+                                        </button>
                                 </div>
                             </div>
                         </div>
@@ -116,7 +116,7 @@
                                         <thead>
                                             <tr>
                                                 <th>
-                                                    Reference Produit
+                                                    Référence Produit
                                                 </th>
                                                 <th>
                                                     Nom Produit
@@ -202,7 +202,7 @@
                                                     &nbsp;&nbsp;&nbsp;&nbsp;
                                                     &nbsp;&nbsp;&nbsp;&nbsp;
                                                     &nbsp;&nbsp;&nbsp;&nbsp;
-                                                    <h4 class="card-title centertext"><i>Modifier Détails Ressource</i></h4>
+                                                    <h4 class="card-title centertext"><i>Mise à jour données</i></h4>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
@@ -253,8 +253,8 @@
                                                         </div>
                                                     </div>
 
-                                                    <button (click)="updateInformationClientTODB()" type="button" class="btn btn-info container" data-bs-dismiss="modal">Modifier
-                                                        Informations</button>
+                                                    <button (click)="updateInformationClientTODB()" type="button" class="btn btn-info container" data-bs-dismiss="modal">Mise à jour
+                                                        Infos</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -271,7 +271,7 @@
         </div>
     </div>
     <br>
-    <button type="button" (click)="searchOnOffreBy()" class="btn btn-inverse-info mdi mdi-account-search"> Search an
+    <button type="button" (click)="searchOnOffreBy()" class="btn btn-inverse-info mdi mdi-account-search"> Consulter
         Offre</button>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -289,6 +289,5 @@
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-    <button type="button" (click)="addWorkerInOffre()" class="btn btn-inverse-info mdi mdi mdi-plus"> Add
-        worker</button>
+    <button type="button" (click)="addWorkerInOffre()" class="btn btn-inverse-info mdi mdi mdi-plus"> Ajouter</button>
 </div>

@@ -108,7 +108,7 @@ export class AddWorkerEspaceComponent implements OnInit {
       imageProfileForUserSend,
       dataSend
     }
-    this.http.post('http://20.127.19.239/company/addInTableSalary', queryObj)
+    this.http.post('http://localhost:5050/company/addInTableSalary', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           if (key == "resutFunction") {
@@ -147,7 +147,7 @@ export class AddWorkerEspaceComponent implements OnInit {
       })
     }
 
-    this.http.post('http://20.127.19.239/company/AddWorkerInDB', queryObj)
+    this.http.post('http://localhost:5050/company/AddWorkerInDB', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           if (key == "resutFunction") {
@@ -195,7 +195,7 @@ export class AddWorkerEspaceComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.http.post('http://20.127.19.239/company/deleteWorkerFromDB', queryObj)
+        this.http.post('http://localhost:5050/company/deleteWorkerFromDB', queryObj)
           .subscribe(res => {
             for ([key, val] of Object.entries(res)) {
               if (key == "resutFunction") {
@@ -242,7 +242,7 @@ export class AddWorkerEspaceComponent implements OnInit {
       fullNameWorkerSend,
       idWorkerSend
     }
-    this.http.post('http://20.127.19.239/company/updateInfoWorkerCompany', queryObj)
+    this.http.post('http://localhost:5050/company/updateInfoWorkerCompany', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           if (key == "resutFunction") {
@@ -272,7 +272,7 @@ export class AddWorkerEspaceComponent implements OnInit {
     const queryObj={
       phoneNumber
     }
-    this.http.post('http://20.127.19.239/company/GetAllWorkerCompany', queryObj)
+    this.http.post('http://localhost:5050/company/GetAllWorkerCompany', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           if (key == "resutFunction") {

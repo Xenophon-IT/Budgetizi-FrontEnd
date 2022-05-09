@@ -11,11 +11,11 @@
                 <h4 class="card-title">{{nameCompany}}</h4>
 
                 <div class="row">
-                    <h4 class="card-title text-center">Informations Ressource </h4>
+                    <h4 class="card-title text-center">Détails </h4>
 
                     <div class="form-group row">
                         <div class="col">
-                            <label for="fullName">Nom de la Ressource </label>
+                            <label for="fullName">Nom </label>
                             <div id="the-basics">
                                 <input formControlName="fullName" id="fullName" name="fullName" type="text"
                                     class="typeahead form-control" placeholder="Enter the Resource name..." required
@@ -86,7 +86,7 @@
                             </div>
                         </div>
                         <div class="col">
-                            <label for="profileWorker"> Profile de la Resource </label>
+                            <label for="profileWorker"> Profil</label>
                             <input type="file" name="img[]" class="file-upload-default">
                             <div class="input-group col-xs-12">
                                 <input type="text" class="form-control file-upload-info" disabled
@@ -125,10 +125,10 @@
                     <thead>
                         <tr>
                             <th>
-                                Détails données ressources 
+                                Détails 
                             </th>
                             <th>
-                                Nom de la Ressource
+                                Nom 
                             </th>
                             <th>
                                 Fonction 
@@ -205,12 +205,12 @@
                                 &nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                <h4 class="card-title centertext"><i>Modifier données de la ressource</i></h4>
+                                <h4 class="card-title centertext"><i>Modifier données </i></h4>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
                             <div class="card-body">
-                                <h4 class="card-title centertext">Profile de la Resource</h4>
+                                <h4 class="card-title centertext">Image du Profil</h4>
                     
                                 <div class="image-upload text-center">
                                     <label for="file-input2">
@@ -227,7 +227,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="exampleInputUsername1">Nom de la Ressource </label>
+                                    <label for="exampleInputUsername1">Nom & Prénom </label>
                                     <input [(ngModel)]="fullNameWorker" type="text"  class="typeahead" id="exampleInputUsername1"
                                     value="fullNameWorker"
                                     >
@@ -255,7 +255,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="exampleInputUsername1">Department </label>
+                                    <label for="exampleInputUsername1">Departement </label>
                                     <input [(ngModel)]="departmentNameWorker" value="departmentNameWorker" type="text" class="typeahead" id="exampleInputUsername1">
                                 </div>
                                 

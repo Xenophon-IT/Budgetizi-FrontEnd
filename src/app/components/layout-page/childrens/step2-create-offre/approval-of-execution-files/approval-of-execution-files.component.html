@@ -3,7 +3,7 @@
     <div class="card">
         <div class="card-body">
             <div class="row">
-                <h4 class="card-title text-center">Etape 2</h4>
+                <h4 class="card-title text-center">Estimation Ressources</h4>
                 <form [formGroup]="form" (ngSubmit)="addToOffre()" class="form-sample">
 
                     <ng-container *ngIf="visible1">
@@ -22,7 +22,7 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <label for="fullName">Nom Complet</label>
+                                <label for="fullName">Nom Ressource</label>
                                 <div id="bloodhound">
                                     <select formControlName="fullName" name="fullName" id="fullName"
                                         class="form-control" required autofocus>
@@ -51,7 +51,7 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <label for="nbHWOS">Nb° Heures sur Site en H-J </label>
+                                <label for="nbHWOS">Nb°Heures sur Site en H-J </label>
                                 <div id="bloodhound">
                                     <input formControlName="nbHWOS" id="nbHWOS" name="nbHWOS" class="typeahead"
                                         type="number" placeholder="Hourly labor cost on site..." required autofocus>
@@ -210,13 +210,13 @@
 
                                                     <div class="form-group row">
                                                         <div class="col">
-                                                            <label>Nb° H-D au Siège</label>
+                                                            <label>Nb° H-J au Siège</label>
                                                             <div id="the-basics">
                                                                 <input [(ngModel)]="nbWorkOnCompany" class="typeahead" type="number" value="{{nbWorkOnCompany}}">
                                                             </div>
                                                         </div>
                                                         <div class="col">
-                                                            <label>Nb° H-D sur Site</label>
+                                                            <label>Nb° H-J sur Site</label>
                                                             <div id="bloodhound">
                                                                 <input [(ngModel)]="nbWorkOnSite" class="typeahead" type="number" value="{{nbWorkOnSite}}">
                                                             </div>
@@ -240,7 +240,7 @@
         </div>
     </div>
     <br>
-    <button type="button" (click)="searchOnOffreBy()" class="btn btn-inverse-info mdi mdi-account-search">Search an Offre
+    <button type="button" (click)="searchOnOffreBy()" class="btn btn-inverse-info mdi mdi-account-search">Consulter Offre
         </button>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

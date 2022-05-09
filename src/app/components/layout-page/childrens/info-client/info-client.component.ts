@@ -35,7 +35,7 @@ export class InfoClientComponent implements OnInit {
     const queryObj={
       phoneNumber
     }
-    this.http.post('http://20.127.19.239/client/ClientCompany', queryObj)
+    this.http.post('http://localhost:5050/client/ClientCompany', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           if (key == "resutFunction") {
@@ -119,7 +119,7 @@ export class InfoClientComponent implements OnInit {
       emailProfileToDB,
       passwordProfileToDB
     }
-    this.http.post('http://20.127.19.239/client/updateInfoClientCompany', queryObj)
+    this.http.post('http://localhost:5050/client/updateInfoClientCompany', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
           if (key == "resutFunction") {

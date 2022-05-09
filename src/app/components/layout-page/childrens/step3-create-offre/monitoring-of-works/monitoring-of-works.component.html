@@ -22,11 +22,11 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <label for="fullName">Full Name</label>
+                                <label for="fullName">Nom & Prénom</label>
                                 <div id="bloodhound">
                                     <select formControlName="fullName" name="fullName" id="fullName"
                                         class="form-control" required autofocus>
-                                        <option selected="selected" disabled>Chose a worker</option>
+                                        <option selected="selected" disabled>ressource</option>
                                         <option *ngFor="let lfN of listfullName" [value]="lfN['fullName']">
                                             {{lfN['fullName']}}   ({{lfN['profession']}})
                                         </option>
@@ -35,14 +35,14 @@
                                     </select>
                                 </div>
                                 <small *ngIf="exformFunction.fullName.invalid && exformFunction.fullName.touched"
-                                    class="text-danger" required autofocus> Choose the worker name !
+                                    class="text-danger" required autofocus> saisir nom !
                                 </small>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <div class="col">
-                                <label for="nbHWOC">Nb° H-J work on Company</label>
+                                <label for="nbHWOC">Nb° H-J effectuées au siège</label>
                                 <div id="the-basics">
                                     <input formControlName="nbHWOC" id="nbHWOC" name="nbHWOC" class="typeahead"
                                         type="number" placeholder="Hourly labor cost in headquarters..." required
@@ -53,7 +53,7 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <label for="nbHWOS">Nb° H-J work on Site</label>
+                                <label for="nbHWOS">Nb° H-J effectuées sur Site</label>
                                 <div id="bloodhound">
                                     <input formControlName="nbHWOS" id="nbHWOS" name="nbHWOS" class="typeahead"
                                         type="number" placeholder="Hourly labor cost on site..." required autofocus>
@@ -67,14 +67,14 @@
                     
                         <div class="form-group row">
                             <div class="col">
-                                <label>Global Formula (FG)</label>
+                                <label>Formule Globale (FG)</label>
                                 <br>
                                 <ng5-slider [(value)]="value" [options]="options"></ng5-slider>
 
                                 <div class="text-right">
                                     <button type="button" (click)="addToOffre()"
-                                        class="btn btn-inverse-danger btn-fw">Add
-                                        to offre</button>
+                                        class="btn btn-inverse-danger btn-fw">Ajout
+                                        à l'offre</button>
                                 </div>
 
                             </div>
@@ -98,34 +98,34 @@
                                         <thead>
                                             <tr>
                                                 <th>
-                                                    Worker
+                                                    Ressource
                                                 </th>
                                                 <th>
-                                                    Full Name
+                                                    Nom & Prénom
                                                 </th>
                                                 <th>
-                                                    Hours On Company
+                                                   N° Heures au siège
                                                 </th>
                                                 <th>
-                                                    Hours On Site
+                                                    N° Heures sur Site
                                                 </th>
                                                 <th>
                                                     FG%
                                                 </th>
                                                 <th>
-                                                    Proposition Price
+                                                    Proposition 
                                                 </th>
                                                 <th>
-                                                    Revient Price
+                                                    Prix de Revient 
                                                 </th>
                                                 <th>
-                                                    Costs
+                                                    Coûts
                                                 </th>
                                                 <th>
                                                     Delete
                                                 </th>
                                                 <th>
-                                                    Edit
+                                                    Modifier
                                                 </th>
                                             </tr>
                                         </thead>
@@ -190,7 +190,7 @@
                                                     &nbsp;&nbsp;&nbsp;&nbsp;
                                                     &nbsp;&nbsp;&nbsp;&nbsp;
                                                     &nbsp;&nbsp;&nbsp;&nbsp;
-                                                    <h4 class="card-title centertext"><i>Edit information of Worker in Offre</i></h4>
+                                                    <h4 class="card-title centertext"><i>Modifier info ressources</i></h4>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
@@ -204,7 +204,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col">
-                                                            <label>Global Formula</label>
+                                                            <label>Frais Généraux</label>
                                                             <div id="bloodhound">
                                                                 <input [(ngModel)]="FG" class="typeahead" type="number" value="FG">
                                                             </div>
@@ -214,20 +214,20 @@
 
                                                     <div class="form-group row">
                                                         <div class="col">
-                                                            <label>Nb° H work on Company</label>
+                                                            <label>Nb° H au siège</label>
                                                             <div id="the-basics">
                                                                 <input [(ngModel)]="nbWorkOnCompany" class="typeahead" type="number" value="{{nbWorkOnCompany}}">
                                                             </div>
                                                         </div>
                                                         <div class="col">
-                                                            <label>Nb° H work on Site</label>
+                                                            <label>Nb° H sur Site</label>
                                                             <div id="bloodhound">
                                                                 <input [(ngModel)]="nbWorkOnSite" class="typeahead" type="number" value="{{nbWorkOnSite}}">
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <button (click)="updateInformationClientTODB()" type="button" class="btn btn-info container" data-bs-dismiss="modal">Edit
-                                                        Information</button>
+                                                    <button (click)="updateInformationClientTODB()" type="button" class="btn btn-info container" data-bs-dismiss="modal">Mise à jour
+                                                        </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -245,7 +245,7 @@
         </div>
     </div>
     <br>
-    <button type="button" (click)="searchOnOffreBy()" class="btn btn-inverse-info mdi mdi-account-search"> Search an
+    <button type="button" (click)="searchOnOffreBy()" class="btn btn-inverse-info mdi mdi-account-search"> Consulter
         Offre</button>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -263,6 +263,6 @@
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-    <button type="button" (click)="addWorkerInOffre()" class="btn btn-inverse-info mdi mdi mdi-plus"> Add
-        worker</button>
+    <button type="button" (click)="addWorkerInOffre()" class="btn btn-inverse-info mdi mdi mdi-plus"> Ajout
+       Ressource</button>
 </div>
