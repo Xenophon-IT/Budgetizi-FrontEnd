@@ -135,3 +135,35 @@
         </div>
     </div>
 </div>
+<br>
+<br>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title centertext">Liste Offres</h4>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id-Offre</th>
+                        <th>Date de Création</th>
+                        <th>T. Propostion Etape1</th>
+                        <th>T. Propostion Etape2</th>
+                        <th>T. Propostion Etape3</th>
+                        <th>T. Propostion Etape4</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of allOffreFromDB">
+                        <td>{{item['idOffre']}}</td>
+                        <td>{{item['dateCreation']}}</td>
+                        <td>{{item['totalePropositionS1']}}</td>
+                        <td>{{item['totalePropositionS2']}}</td>
+                        <td>{{item['totalePropositionS3']}}</td>
+                        <td>{{item['margeNetTotalefromStep4'] + item['prixRevientTotalefromStep4'] }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>

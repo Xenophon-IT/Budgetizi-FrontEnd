@@ -48,7 +48,7 @@ export class LayoutPageComponent implements OnInit {
     // }
     console.log(this.imageProfileForUser)
 
-    localStorage.setItem('phoneNumberOfUser',this.phoneUserNumber);
+    sessionStorage.setItem('phoneNumberOfUser',this.phoneUserNumber);
     this.router.navigateByUrl('/LayoutPage/PageDashbord', {});
 
   }

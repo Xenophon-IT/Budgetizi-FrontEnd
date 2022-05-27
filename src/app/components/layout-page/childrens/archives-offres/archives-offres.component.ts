@@ -18,7 +18,9 @@ export class ArchivesOffresComponent implements OnInit {
   proposition: any;
   margeNette: any;
   remise: any;
-  status: any
+  status: any;
+  allOffreFromDB: any;
+  totalePropositionS4: any;
   form: FormGroup = new FormGroup({});
   constructor(private http: HttpClient, private fb: FormBuilder) {
     this.form = fb.group({
@@ -31,7 +33,7 @@ export class ArchivesOffresComponent implements OnInit {
     var phoneUserNumber: any;
     var decoded;
     var phoneNumber;
-    phoneUserNumber = localStorage.getItem('phoneNumberOfUser');
+    phoneUserNumber = sessionStorage.getItem('phoneNumberOfUser');
     decoded = jwtDecode<JwtPayload>(phoneUserNumber)
     for ([key2, val2] of Object.entries(decoded)) {
       phoneNumber = val2
@@ -45,6 +47,14 @@ export class ArchivesOffresComponent implements OnInit {
         for ([key, val] of Object.entries(res)) {
           if (key == "resutFunction") {
             this.allOffre = val
+          }
+          if(key == "resutFunction2"){
+            console.log(val)
+            this.allOffreFromDB = val
+            for (let item of val) {
+              this.totalePropositionS4 = item["margeNetTotalefromStep4"] + item["prixRevientTotalefromStep4"]
+              console.log()
+            }
           }
         }
       })
@@ -141,7 +151,7 @@ export class ArchivesOffresComponent implements OnInit {
               var phoneUserNumber: any;
               var decoded;
               var phoneNumber;
-              phoneUserNumber = localStorage.getItem('phoneNumberOfUser');
+              phoneUserNumber = sessionStorage.getItem('phoneNumberOfUser');
               decoded = jwtDecode<JwtPayload>(phoneUserNumber)
               for ([key2, val2] of Object.entries(decoded)) {
                 phoneNumber = val2

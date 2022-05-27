@@ -35,8 +35,8 @@
                                 <th>Marge Nette</th>
                                 <th>Marge %</th>
                             </tr>
-                            <tr >
-                                <th>Assistance M.O</th>
+                            <tr class="centertext">
+                                <th colspan="23">Assistance M.O</th>
                             </tr>
                         </thead>
 
@@ -45,7 +45,7 @@
                                 <!-- <td>Step1</td> -->
                                 
                                 <td class="py-1">
-                                    <!-- <img src="{{item['profileWork']}}" alt="image" /> -->
+                                    <img src="{{item['profileWork']}}" alt="image" />
                                 </td>
                                 <td>{{item['fullName']}}</td>
                                 <td>Hour</td>
@@ -66,7 +66,7 @@
                                 <td>T. Heures</td>
                                 <td>{{item['totaleQtyWork']}}</td>
                                 <td></td>
-                                <td>{{item['totaleProposition']}}</td>
+                                <th>{{item['totaleProposition']}}</th>
                                 <td>{{item['totaleRevient']}}</td>
                                 <td></td>
                                 <td>{{item['CostsGlobale']}}</td>
@@ -74,13 +74,13 @@
                                 <td>{{item['totaleMargeNet']}}</td>
                                 <td>{{item['totaleMargeNetPC']}} %</td>
                             </tr>
-                            <tr >
-                                <th>Approbation Dossier d'exécution</th>
+                            <tr class="centertext">
+                                <th colspan="23">Approbation Dossier d'exécution</th>
                             </tr>
                             <tr *ngFor="let item of getAllInformationForStep2Worker">
                                 <!-- <td>Step2</td> -->
                                 <td class="py-1">
-                                    <!-- <img src="{{item['profileWork']}}" alt="image" /> -->
+                                    <img src="{{item['profileWork']}}" alt="image" />
                                 </td>
                                 <td>{{item['fullName']}}</td>
                                 <td>N° Heures-Jours</td>
@@ -103,7 +103,7 @@
                                 <td>T. Heures-Jours</td>
                                 <td>{{item['totaleQtyWork']}}</td>
                                 <td></td>
-                                <td>{{item['totaleProposition']}}</td>
+                                <th>{{item['totaleProposition']}}</th>
                                 <td>{{item['totaleRevient']}}</td>
                                 <td></td>
                                 <td>{{item['CostsGlobale']}}</td>
@@ -111,13 +111,14 @@
                                 <td>{{item['totaleMargeNet']}}</td>
                                 <td>{{item['totaleMargeNetPC']}} %</td>
                             </tr>
-                            <tr >
-                                <th>Suivi travaux</th>
+                            <tr class="centertext">
+                                <th colspan="23">Suivi travaux</th>
                             </tr>
+
                             <tr *ngFor="let item of getAllInformationForStep3Worker">
                                 <!-- <td>Step3</td> -->
                                 <td class="py-1">
-                                    <!-- <img src="{{item['profileWork']}}" alt="image" /> -->
+                                    <img src="{{item['profileWork']}}" alt="image" />
                                 </td>
                                 <td>{{item['fullName']}}</td>
                                 <td>Hour-Day</td>
@@ -138,7 +139,7 @@
                                 <td>T. Heures-Jours</td>
                                 <td>{{item['totaleQtyWork']}}</td>
                                 <td></td>
-                                <td>{{item['totaleProposition']}}</td>
+                                <th>{{item['totaleProposition']}}</th>
                                 <td>{{item['totaleRevient']}}</td>
                                 <td></td>
                                 <td>{{item['CostsGlobale']}}</td>
@@ -168,7 +169,7 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td>{{item['globalProposition']}}</td>
+                                <th>{{item['globalProposition']}}</th>
                                 <td>{{item['globalRevient']}}</td>
                                 <td>{{item['globalRevientAndFG']}}</td>
                                 <td></td>

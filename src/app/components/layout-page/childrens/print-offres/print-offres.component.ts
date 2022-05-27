@@ -63,7 +63,7 @@ export class PrintOffresComponent{
     var phoneUserNumber: any;
     var decoded;
     var phoneNumber;
-    phoneUserNumber = localStorage.getItem('phoneNumberOfUser');
+    phoneUserNumber = sessionStorage.getItem('phoneNumberOfUser');
     decoded = jwtDecode<JwtPayload>(phoneUserNumber)
     for ([key2, val2] of Object.entries(decoded)) {
       phoneNumber = val2
@@ -75,65 +75,113 @@ export class PrintOffresComponent{
       phoneNumber
     }
 
-    this.http.post('http://localhost:5050/company/checkCompleteOffre', queryObj)
+    this.http.post('http://localhost:5050/company/getAllInformationOfAnWorker', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
+          
           if (key == "resutFunction") {
-            if (val == 1) {
-              this.http.post('http://localhost:5050/company/getAllInformationOfAnWorker', queryObj)
-                .subscribe(res => {
-                  for ([key, val] of Object.entries(res)) {
-                    this.visible1 = !this.visible1;
-                    this.visible2 = !this.visible2;
-                    
-                    if (key == "resutFunction1") {
-                      console.log(val)
-                      // for (var i = 0; i < val.length; i++) {
-                      //   if(val[i]=="Step1"){
-                      //     this.endOfStep1Operation = i
-                      //     console.log(this.endOfStep1Operation)
-                      //   }
-                      // }
-                      this.getAllInformation = val;
-                    }
-                    if (key == "resutFunction2") {
-                      console.log(val)
-                      this.getAllInformationForStep1 = val
-                    }
-                    if (key == "resutFunction3") {
-                      console.log(val)
-                      this.getAllInformationForStep2Worker = val
-                    }
-                    if (key == "resutFunction4") {
-                      console.log(val)
-                      this.getAllInformationForStep2 = val
-                    }
-                    if (key == "resutFunction5") {
-                      console.log(val)
-                      this.getAllInformationForStep3Worker = val
-                    }
-                    if (key == "resutFunction6") {
-                      console.log(val)
-                      this.getAllInformationForStep3 = val
-                    }
-                    if (key == "resutFunction8") {
-                      console.log(val)
-                      this.getAllInformationForFinalOffre = val
-                    }
-
-                  }
-                })
-            }
-            else {
+            console.log("Test val")
+            console.log(val)
+            if (val == 0) {
               Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: "l'ID ne correspond à aucune offre !",
+                text: "Aucune offre ne correspond à votre recherche !",
               })
+            }
+          }
+          else {
+            this.visible2 = !this.visible2;
+            if (key == "resutFunction1") {
+              console.log(val)
+              this.getAllInformation = val;
+            }
+            if (key == "resutFunction2") {
+              console.log(val)
+              this.getAllInformationForStep1 = val
+            }
+            if (key == "resutFunction3") {
+              console.log(val)
+              this.getAllInformationForStep2Worker = val
+            }
+            if (key == "resutFunction4") {
+              console.log(val)
+              this.getAllInformationForStep2 = val
+            }
+            if (key == "resutFunction5") {
+              console.log(val)
+              this.getAllInformationForStep3Worker = val
+            }
+            if (key == "resutFunction6") {
+              console.log(val)
+              this.getAllInformationForStep3 = val
+            }
+            if (key == "resutFunction8") {
+              console.log(val)
+              this.getAllInformationForFinalOffre = val
             }
           }
         }
       })
+    // this.http.post('http://localhost:5050/company/checkCompleteOffre', queryObj)
+    //   .subscribe(res => {
+    //     for ([key, val] of Object.entries(res)) {
+    //       if (key == "resutFunction") {
+    //         if (val == 1) {
+    //           this.http.post('http://localhost:5050/company/getAllInformationOfAnWorker', queryObj)
+    //             .subscribe(res => {
+    //               for ([key, val] of Object.entries(res)) {
+    //                 this.visible1 = !this.visible1;
+    //                 this.visible2 = !this.visible2;
+                    
+    //                 if (key == "resutFunction1") {
+    //                   console.log(val)
+    //                   // for (var i = 0; i < val.length; i++) {
+    //                   //   if(val[i]=="Step1"){
+    //                   //     this.endOfStep1Operation = i
+    //                   //     console.log(this.endOfStep1Operation)
+    //                   //   }
+    //                   // }
+    //                   this.getAllInformation = val;
+    //                 }
+    //                 if (key == "resutFunction2") {
+    //                   console.log(val)
+    //                   this.getAllInformationForStep1 = val
+    //                 }
+    //                 if (key == "resutFunction3") {
+    //                   console.log(val)
+    //                   this.getAllInformationForStep2Worker = val
+    //                 }
+    //                 if (key == "resutFunction4") {
+    //                   console.log(val)
+    //                   this.getAllInformationForStep2 = val
+    //                 }
+    //                 if (key == "resutFunction5") {
+    //                   console.log(val)
+    //                   this.getAllInformationForStep3Worker = val
+    //                 }
+    //                 if (key == "resutFunction6") {
+    //                   console.log(val)
+    //                   this.getAllInformationForStep3 = val
+    //                 }
+    //                 if (key == "resutFunction8") {
+    //                   console.log(val)
+    //                   this.getAllInformationForFinalOffre = val
+    //                 }
+
+    //               }
+    //             })
+    //         }
+    //         else {
+    //           Swal.fire({
+    //             icon: 'error',
+    //             title: 'Oops...',
+    //             text: "l'ID ne correspond à aucune offre !",
+    //           })
+    //         }
+    //       }
+    //     }
+    //   })
 
       this.listOfProducts()
   }
@@ -146,7 +194,7 @@ export class PrintOffresComponent{
     var phoneUserNumber: any;
     var decoded;
     var phoneNumber;
-    phoneUserNumber = localStorage.getItem('phoneNumberOfUser');
+    phoneUserNumber = sessionStorage.getItem('phoneNumberOfUser');
     decoded = jwtDecode<JwtPayload>(phoneUserNumber)
     for ([key2, val2] of Object.entries(decoded)) {
       phoneNumber = val2
