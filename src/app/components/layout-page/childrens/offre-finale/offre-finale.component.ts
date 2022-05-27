@@ -36,7 +36,14 @@ export class OffreFinaleComponent implements OnInit {
   sommeOFProducts: any
 
   constructor(private http: HttpClient) {
-
+    var phoneUser = sessionStorage.getItem('phoneNumberOfUser');
+    var emailProfile = sessionStorage.getItem('emailProfile');
+    console.log(
+      phoneUser
+    );
+    console.log(
+      emailProfile
+    );
   }
 
   ngOnInit(): void {
@@ -52,7 +59,7 @@ export class OffreFinaleComponent implements OnInit {
     var phoneUserNumber: any;
     var decoded;
     var phoneNumber;
-    phoneUserNumber = localStorage.getItem('phoneNumberOfUser');
+    phoneUserNumber = sessionStorage.getItem('phoneNumberOfUser');
     decoded = jwtDecode<JwtPayload>(phoneUserNumber)
     for ([key2, val2] of Object.entries(decoded)) {
       phoneNumber = val2
@@ -67,44 +74,69 @@ export class OffreFinaleComponent implements OnInit {
     this.http.post('http://localhost:5050/company/getAllInformationOfAnWorker', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
-          this.visible1 = !this.visible1;
-          if (key == "resutFunction1") {
+          
+          if (key == "resutFunction") {
+            console.log("Test val")
             console.log(val)
-            // for (var i = 0; i < val.length; i++) {
-            //   if(val[i]=="Step1"){
-            //     this.endOfStep1Operation = i
-            //     console.log(this.endOfStep1Operation)
-            //   }
-            // }
-            this.getAllInformation = val;
+            if (val == 0) {
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: "You don't have this offre try again !",
+              })
+            }
           }
-          if (key == "resutFunction2") {
-            console.log(val)
-            this.getAllInformationForStep1 = val
+          else {
+            this.visible1 = !this.visible1;
+            if (key == "resutFunction1") {
+              console.log(val)
+              this.getAllInformation = val;
+            }
+            if (key == "resutFunction2") {
+              console.log(val)
+              this.getAllInformationForStep1 = val
+            }
+            if (key == "resutFunction3") {
+              console.log(val)
+              this.getAllInformationForStep2Worker = val
+            }
+            if (key == "resutFunction4") {
+              console.log(val)
+              this.getAllInformationForStep2 = val
+            }
+            if (key == "resutFunction5") {
+              console.log(val)
+              this.getAllInformationForStep3Worker = val
+            }
+            if (key == "resutFunction6") {
+              console.log(val)
+              this.getAllInformationForStep3 = val
+            }
+            if (key == "resutFunction8") {
+              console.log(val)
+              this.getAllInformationForFinalOffre = val
+            }
           }
-          if (key == "resutFunction3") {
-            console.log(val)
-            this.getAllInformationForStep2Worker = val
-          }
-          if (key == "resutFunction4") {
-            console.log(val)
-            this.getAllInformationForStep2 = val
-          }
-          if (key == "resutFunction5") {
-            console.log(val)
-            this.getAllInformationForStep3Worker = val
-          }
-          if (key == "resutFunction6") {
-            console.log(val)
-            this.getAllInformationForStep3 = val
-          }
-          if (key == "resutFunction8") {
-            console.log(val)
-            this.getAllInformationForFinalOffre = val
-          }
-
         }
       })
+
+    // this.http.post('http://localhost:5050/company/checkCompleteOffre', queryObj)
+    //   .subscribe(res => {
+    //     for ([key, val] of Object.entries(res)) {
+    //       if (key == "resutFunction") {
+    //         if (val == 1) {
+
+    //         }
+    //         else {
+    //           Swal.fire({
+    //             icon: 'error',
+    //             title: 'Oops...',
+    //             text: "You don't have this offre try again !",
+    //           })
+    //         }
+    //       }
+    //     }
+    //   })
   }
   printWindow() {
     window.print()
@@ -115,7 +147,7 @@ export class OffreFinaleComponent implements OnInit {
     var phoneUserNumber: any;
     var decoded;
     var phoneNumber;
-    phoneUserNumber = localStorage.getItem('phoneNumberOfUser');
+    phoneUserNumber = sessionStorage.getItem('phoneNumberOfUser');
     decoded = jwtDecode<JwtPayload>(phoneUserNumber)
     for ([key2, val2] of Object.entries(decoded)) {
       phoneNumber = val2
@@ -133,7 +165,7 @@ export class OffreFinaleComponent implements OnInit {
       this.http.post('http://localhost:5050/company/getAllInformationForStep4', queryObj)
         .subscribe(res => {
           for ([key, val] of Object.entries(res)) {
-            this.visible1 = !this.visible1;
+            // this.visible1 = !this.visible1;
             if (key == "resutFunction7") {
               console.log(val)
               this.getAllProducts = val
@@ -171,7 +203,7 @@ export class OffreFinaleComponent implements OnInit {
         var decoded;
         var phoneNumber;
         var idOffreSend = this.idOffreGlobale;
-        phoneUserNumber = localStorage.getItem('phoneNumberOfUser');
+        phoneUserNumber = sessionStorage.getItem('phoneNumberOfUser');
         decoded = jwtDecode<JwtPayload>(phoneUserNumber)
         for ([key2, val2] of Object.entries(decoded)) {
           phoneNumber = val2
@@ -188,7 +220,7 @@ export class OffreFinaleComponent implements OnInit {
           .subscribe(res => {
             for ([key, val] of Object.entries(res)) {
               if (key == "resutFunction") {
-                if(val==1){
+                if (val == 1) {
                   Swal.fire({
                     position: 'top-end',
                     icon: 'success',

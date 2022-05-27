@@ -42,6 +42,7 @@ export class SendToClientComponent implements OnInit {
   totalePropositionS3: any;
   totalePropositionS4: any;
   globalPropositionStPrWR: any;
+  totaleFinalHT:any;
 
   negociataion: any
   constructor(private http: HttpClient) {
@@ -75,7 +76,7 @@ export class SendToClientComponent implements OnInit {
     var phoneUserNumber: any;
     var decoded;
     var phoneNumber: any;
-    phoneUserNumber = localStorage.getItem('phoneNumberOfUser');
+    phoneUserNumber = sessionStorage.getItem('phoneNumberOfUser');
     decoded = jwtDecode<JwtPayload>(phoneUserNumber)
     for ([key2, val2] of Object.entries(decoded)) {
       phoneNumber = val2
@@ -87,31 +88,52 @@ export class SendToClientComponent implements OnInit {
       idOffreSend,
       phoneNumber
     }
-
-    this.http.post('http://localhost:5050/company/checkCompleteOffre', queryObj)
+    this.http.post('http://localhost:5050/company/getAllInformationOfAnWorker', queryObj)
       .subscribe(res => {
         for ([key, val] of Object.entries(res)) {
+          
           if (key == "resutFunction") {
-            if (val == 1) {
-              this.http.post('http://localhost:5050/company/getAllInformationOfAnWorker', queryObj)
-                .subscribe(res => {
-                  for ([key, val] of Object.entries(res)) {
-                    this.visible1 = !this.visible1;
-                    // this.visible2 = !this.visible2;
-                  }
-                  this.getAllNesscaryInformation(idOffreSend,phoneNumber)
-                })
-            }
-            else {
+            console.log("Test val")
+            console.log(val)
+            if (val == 0) {
               Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: "Aucune offre ne correspond à votre recherche !",
+                text: "Aucune offre ne correspond à votre recherche !!",
               })
             }
           }
+          else {
+            this.visible1 = !this.visible1;
+            this.getAllNesscaryInformation(idOffreSend,phoneNumber)
+          }
         }
       })
+
+    // this.http.post('http://localhost:5050/company/checkCompleteOffre', queryObj)
+    //   .subscribe(res => {
+    //     for ([key, val] of Object.entries(res)) {
+    //       if (key == "resutFunction") {
+    //         if (val == 1) {
+    //           this.http.post('http://localhost:5050/company/getAllInformationOfAnWorker', queryObj)
+    //             .subscribe(res => {
+    //               for ([key, val] of Object.entries(res)) {
+    //                 this.visible1 = !this.visible1;
+    //                 // this.visible2 = !this.visible2;
+    //               }
+    //               this.getAllNesscaryInformation(idOffreSend,phoneNumber)
+    //             })
+    //         }
+    //         else {
+    //           Swal.fire({
+    //             icon: 'error',
+    //             title: 'Oops...',
+    //             text: "Aucune offre ne correspond à votre recherche !",
+    //           })
+    //         }
+    //       }
+    //     }
+    //   })
   }
   getAllNesscaryInformation(idOffreSend:any, phoneNumber:any){
     let key, val;
@@ -168,7 +190,9 @@ export class SendToClientComponent implements OnInit {
             console.log(val)
             // this.negociataion = val[i]["nomNegociateur"]
             for(let i=0; i<val.length;i++){
+              console.log(val[i])
               this.globalPropositionStPrWR = val[i]["globalPropositionStPrWR"]
+              this.totaleFinalHT = val[i]["totaleFinalHT"]
               this.negociataion = val[i]["nomNegociateur"]
             }
             console.log(this.globalPropositionStPrWR)

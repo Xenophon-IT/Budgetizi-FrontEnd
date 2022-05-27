@@ -21,9 +21,9 @@ export class SigninPageComponent implements OnInit {
   phoneNumber: any;
   myModal: any;
   phoneNumberToAnCode: any;
-  timeLeft: number=60;
+  timeLeft: number = 60;
   interval: any;
-  dataInformation:any;
+  dataInformation: any;
 
 
   constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) {
@@ -35,12 +35,25 @@ export class SigninPageComponent implements OnInit {
       codeNotif: ['', [Validators.required,]]
     })
     this.imageUserData = "../assets/img/default-avatar.jpg";
-    localStorage.setItem('phoneNumberOfUser','0');
+    // sessionStorage.setItem('phoneNumberOfUser','0');
+    let phoneNumber: any;
+    phoneNumber = sessionStorage.getItem('phoneNumberOfUser');
+    console.log(phoneNumber)
+    // if(phoneNumber!=0){
+    //   Swal.fire({
+    //     icon: 'error',
+    //     title: 'Oops...',
+    //     text: 'Déjà vous avez un compte ouvert!',
+    //   })
+    //   this.router.navigateByUrl('/HomePage', {});
+    // }
+    // else{
     Swal.fire(
       'Je suis pas un robot',
       'Click x2 times to login?',
       'question',
     )
+    // }
   }
 
   ngOnInit(): void {
@@ -126,49 +139,49 @@ export class SigninPageComponent implements OnInit {
   }
 
   sendAnotherCode() {
-    var  phoneNumberToAnCodeLocal = this.phoneNumberToAnCode;
+    var phoneNumberToAnCodeLocal = this.phoneNumberToAnCode;
     this.timeLeft = 60;
-    const queryObj ={
+    const queryObj = {
       phoneNumberToAnCodeLocal
     }
     // console.log(phoneNumberToAnCodeLocal)
     this.http.post('http://localhost:5050/client/sendAnotherCodePhone', queryObj)
-    .subscribe(res => {
-    })
+      .subscribe(res => {
+      })
   }
 
-  clicksub1(){
-    let key,val;
-    let key1,val1;
+  clicksub1() {
+    let key, val;
+    let key1, val1;
     var dataSend = this.form1.value;
     var dataSend2 = this.form.value;
     // console.log(dataSend)
     // console.log(this.timeLeft)
-    const queryObj={
+    const queryObj = {
       dataSend,
       dataSend2
     }
     // console.log(this.timeLeft)
-    if(this.timeLeft ==0){
+    if (this.timeLeft == 0) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
         text: "60 secondes dépassées",
       })
     }
-    else{
+    else {
       this.http.post('http://localhost:5050/client/checkCodeNotif', queryObj)
-      .subscribe(res => {
-        for ([key, val] of Object.entries(res)) {
-          if (key == "variableCodeCheck") {
-            if (val == 0) {
-              Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: "Code erroné!",
-              })
-            }
-            else{
+        .subscribe(res => {
+          for ([key, val] of Object.entries(res)) {
+            if (key == "variableCodeCheck") {
+              if (val == 0) {
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Oops...',
+                  text: "Code erroné!",
+                })
+              }
+              else {
                 Swal.fire({
                   position: 'top-end',
                   icon: 'success',
@@ -178,21 +191,21 @@ export class SigninPageComponent implements OnInit {
                 })
                 this.myModal = "";
                 this.http.post('http://localhost:5050/client/getInformationClient', queryObj)
-                .subscribe(res => {
-                  for ([key1, val1] of Object.entries(res)) {
-                    if (key1 == "resutFunction") {
-                      console.log(val1);
-                      this.dataInformation = val1;
-                      this.router.navigateByUrl('/LayoutPage', { state: {dataInformation: this.dataInformation} });
+                  .subscribe(res => {
+                    for ([key1, val1] of Object.entries(res)) {
+                      if (key1 == "resutFunction") {
+                        console.log(val1);
+                        this.dataInformation = val1;
+                        this.router.navigateByUrl('/LayoutPage', { state: { dataInformation: this.dataInformation } });
+                      }
                     }
-                  }
-                })
+                  })
                 //this.router.navigateByUrl('/LayoutPage', { state: {dataInformation: this.dataInformation} });
                 this.myModal = "";
               }
             }
-        }
-      })
+          }
+        })
     }
     //reset the input of code notification
     this.form1.reset();

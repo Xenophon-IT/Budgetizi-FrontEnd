@@ -25,7 +25,7 @@ export class InfoClientComponent implements OnInit {
     var phoneUserNumber:any;
     var decoded;
     var phoneNumber;    
-    phoneUserNumber = localStorage.getItem('phoneNumberOfUser');
+    phoneUserNumber = sessionStorage.getItem('phoneNumberOfUser');
     decoded = jwtDecode<JwtPayload>(phoneUserNumber)
     for ([key2, val2] of Object.entries(decoded)) {
       phoneNumber = val2
@@ -99,7 +99,7 @@ export class InfoClientComponent implements OnInit {
     var phoneUserNumber:any;
     var decoded;
     var phoneNumber;    
-    phoneUserNumber = localStorage.getItem('phoneNumberOfUser');
+    phoneUserNumber = sessionStorage.getItem('phoneNumberOfUser');
     decoded = jwtDecode<JwtPayload>(phoneUserNumber)
     for ([key2, val2] of Object.entries(decoded)) {
       phoneNumber = val2
